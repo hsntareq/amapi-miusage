@@ -1,0 +1,27 @@
+{
+	"name": "hasan/am-miusage",
+	"description": "A WordPress event plugin to load api data.",
+	"type": "wordpress-plugin",
+	"license": "GPLv2",
+	"version": "1.0.0",
+	"autoload": {
+		"psr-4": {
+			"AmMiusage\\": "inc/"
+		},
+		"files": [
+			"inc/helpers.php"
+		]
+	},
+	"authors": [
+		{
+			"name": "Hasan Tareq",
+			"email": "hsntareq@gmail.com"
+		}
+	],
+	"minimum-stability": "dev",
+	"require": {},
+	"scripts": {
+		"lint": "phpcs",
+		"lint:fix": "phpcbf"
+	}
+}

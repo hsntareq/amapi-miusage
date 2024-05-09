@@ -1,0 +1,23 @@
+{
+	"name": "am-miusage",
+	"version": "1.0.0",
+	"description": "",
+	"main": "vite.config.js",
+	"type": "module",
+	"scripts": {
+		"wdev": "wp-scripts start",
+		"dev": "vite",
+		"build": "vite build",
+		"preview": "vite preview",
+		"zip": "node bundle.js"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^27.8.0",
+		"dir-archiver": "^2.1.0",
+		"sass": "^1.72.0",
+		"vite": "^5.1.6"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC"
+}
