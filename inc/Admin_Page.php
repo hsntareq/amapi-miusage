@@ -7,6 +7,8 @@
 
 namespace AmMiusage;
 
+use AmMiusage\Vite;
+
 /**
  * Admin Page.
  */
@@ -27,10 +29,31 @@ class Admin_Page {
 	 */
 	public function __construct() {
 		add_action( 'admin_menu', array( $this, 'add_admin_menu' ) );
-		// add_action( 'wp_ajax_monthly_calendar_data', array( $this, 'monthly_calendar_data' ) ); // .
-		// add_action( 'wp_ajax_nopriv_monthly_calendar_data', array( $this, 'monthly_calendar_data' ) ); // .
+		$this->init();
+		Miusage_Api::get_instance();
 	}
 
+	/**
+	 * Initialize the class.
+	 *
+	 * @return void
+	 */
+	public function init() {
+		// Add admin assets if the current page is the plugin admin page.
+		if ( isset( $_GET['page'] ) && 'am-miusage' === $_GET['page'] ) {
+			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_vite_assets' ) );
+		}
+	}
+
+	/**
+	 * Enqueue Vite assets.
+	 *
+	 * @return void
+	 */
+	public function enqueue_vite_assets() {
+		// Accessing the enqueue_assets method from the Vite class.
+		Vite::get_instance()->enqueue_assets();
+	}
 
 	/**
 	 * Add admin menu.

@@ -18,6 +18,25 @@ trait PluginData {
 	}
 
 	/**
+	 * Sanitize an array.
+	 *
+	 * @param mixed $array array.
+	 *
+	 * @return array
+	 */
+	public function sanitize_array( $array ) {
+		// Recursive sanitization of an array using sanitize_text_field.
+		$sanitized_array = array_map(
+			function ( $value ) {
+				return is_array( $value ) ? $this->sanitize_array( $value ) : sanitize_text_field( $value );
+			},
+			$array
+		);
+
+		return $sanitized_array;
+	}
+
+	/**
 	 * Get the plugin version.
 	 *
 	 * @param string $key key.

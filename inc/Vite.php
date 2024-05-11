@@ -51,7 +51,7 @@ class Vite {
 		$this->manifest_path  = esc_url( AM_API_PLUGIN_PATH . '/assets/dist/.vite/manifest.json' );
 		$this->dev_server_url = esc_url( $this->dev_server . '/assets/index.php' ); // Adjust the URL according to your Vite dev server configuration.
 		// Add actions to enqueue assets.
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_assets' ) );
+		// add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_assets' ) ); // .
 		add_action( 'wp_loaded', array( $this, 'amapi_plugin_notice' ) );
 
 	}
@@ -93,13 +93,14 @@ class Vite {
 			$this->enqueue_prod_assets();
 		}
 
-
 		wp_localize_script(
 			'amapi-admin-script',
 			'amapi_data',
 			array(
 				'ajaxurl' => admin_url( 'admin-ajax.php' ),
 				'nonce'   => wp_create_nonce( 'amapi-nonce' ),
+				'loading' => esc_url( includes_url() . 'js/tinymce/skins/lightgray/img//loader.gif' ),
+				'loading_inline' => esc_url( includes_url() . 'js/thickbox/loadingAnimation.gif' ),
 			)
 		);
 	}
@@ -133,7 +134,7 @@ class Vite {
 	 */
 	private function enqueue_dev_assets() {
 		if ( $this->is_dev_server_running() ) {
-			wp_enqueue_script( 'amapi-admin-script', $this->dev_server . 'assets/src/admin.js', array( 'jquery' ), self::get_data( 'Version' ), true );
+			wp_enqueue_script( 'amapi-admin-script', $this->dev_server . '/assets/src/admin.js', array( 'jquery' ), self::get_data( 'Version' ), true );
 			// Add type="module" attribute to the script tag.
 			add_filter( 'script_loader_tag', array( $this, 'add_module_type_to_script' ), 10, 3 );
 		}

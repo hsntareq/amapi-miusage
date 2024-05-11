@@ -42,7 +42,6 @@ final class Plugin_Main {
 		$this->define_constants();
 		Vite::get_instance();
 		Admin_Page::get_instance();
-
 	}
 	/**
 	 * Register hooks and do other setup tasks.
