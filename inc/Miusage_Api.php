@@ -42,7 +42,8 @@ class Miusage_Api {
 		$miusage_option_data = get_option( 'amapi_miusage_data' );
 		// $this->amapi_get_miusage_data();
 
-		// wp_send_json_error( true === $miusage_data );.
+		// wp_send_json_error( $is_ajax_allowed );
+
 		if ( true !== $is_ajax_allowed ) {
 			$this->amapi_get_miusage_data();
 		}
@@ -51,6 +52,7 @@ class Miusage_Api {
 			'data' => null,
 			'message' => 'Data not found',
 		);
+
 		wp_send_json_error( $data );
 
 		// if ( $get_data ) {
@@ -82,7 +84,8 @@ class Miusage_Api {
 		}
 
 		set_transient( $this->transient_timeout, __return_true(), 10 ); // MINUTE_IN_SECONDS.
-		update_option( 'amapi_miusage_data', wp_remote_retrieve_body( $response ) );
+
+		update_option( 'amapi_miusage_data', $response );
 
 		$response['message'] = 'Data refreshed successfully!';
 		wp_send_json_success( $response );

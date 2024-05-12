@@ -1,6 +1,6 @@
 console.log('ajax-action.js');
 
-import { ajax_request } from '../lib';
+import { ajax_request, toast_message } from '../lib';
 
 
 const amapiRefreshButton = document.getElementById('amapi_refresh_button');
@@ -12,17 +12,21 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 	// loading_image(amapiPageContent);
 	if (amapiPageContent) {
-		amapiPageContent.hasAttribute('ajax_call') && handleRequestingData(amapiPageContent);
+		handleRequestingData(amapiPageContent);
+		// amapiPageContent.hasAttribute('ajax_call') && handleRequestingData(amapiPageContent);
 
 		amapiRefreshButton && amapiRefreshButton.addEventListener('click', async () => {
 			ajaxLoader.style.display = 'block';
-			console.log(amapiPageContent.hasAttribute('ajax_call'));
+			handleRequestingData(amapiPageContent);
+
+
+			/* console.log(amapiPageContent.hasAttribute('ajax_call'));
 			if (amapiPageContent.hasAttribute('ajax_call')) {
-				handleRequestingData(amapiPageContent);
+				// handleRequestingData(amapiPageContent);
 				ajaxLoader.style.display = 'none';
 			} else {
 				inline_message('error', 'You are not allowed to refresh the data', 3000);
-			}
+			} */
 		});
 	}
 
@@ -40,24 +44,36 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 function handleRequestingData(amapiContent) {
+	let dataLoaded = false;
 	ajax_request('amapi_refresh_data', { name: 'John Doe' })
 		.then(response => {
-			console.log(response);
-			return;
+			if (!response.success) {
+				inline_message('error', response.data.message, 3000);
+				dataLoaded = true;
+				// return;
+			}
+
+			if (response.success && !dataLoaded) {
+				amapiContent.innerHTML = resposeTableHtml(response.data);
+				handleRequestingData(amapiContent);
+			}
+			// return;
 		});
 }
 
 
 function ajax_refresh_table_data(amapiContent) {
-	loading_image(amapiContent);
+	// loading_image(amapiContent);
 	ajax_request('amapi_refresh_data', { name: 'John Doe' })
 		.then(response => {
 			if (response.success) {
 				amapiContent.innerHTML = resposeTableHtml(JSON.parse(response.data));
-				amapiPageContent.removeAttribute('ajax_call');
-			} else {
-				inline_message('error', response.data, 3000);
+				return;
+				// amapiPageContent.removeAttribute('ajax_call');
 			}
+			console.log(response.data.message);
+			inline_message('error', response.data.message, 3000);
+			return;
 
 		});
 }
@@ -70,26 +86,10 @@ function inline_message(type = 'success', message = 'Success', duration = 1000) 
 
 	setTimeout(() => {
 		inlineWrap.innerHTML = '';
-		ajaxLoader.style.display = 'none';
+		// ajaxLoader.style.display = 'none';
 	}, duration);
 }
 
-
-function toast_message(type = 'success', message = 'Success', duration = 1000) {
-
-	const toast_wrap = document.getElementById('amapi-toast-wrap');
-
-	toast_wrap.insertAdjacentHTML('beforeend', `<div class="amapi-toast amapi-toast-${type}"><span class="close">&times;</span>${message}</div>`);
-
-	setInterval(() => {
-		const toast = toast_wrap.firstElementChild;
-		setTimeout(() => {
-			toast && toast.remove();
-			ajaxLoader.style.display = 'none';
-		}, duration);
-	}, duration);
-
-}
 
 function loading_image(element) {
 	element.innerHTML = '';
@@ -100,12 +100,12 @@ function loading_image(element) {
 }
 
 const resposeTableHtml = (data) => {
-	console.log(data.data.rows);
+	console.log(data.data);
 	let html = ` <table class="wp-list-table widefat fixed striped table-view-list datas amapi-datatable">
 			<caption>${data.title}</caption>
 			<thead>
 				<tr>
-				${data.data.headers.map(header => `<th>${header}</th>`).join('')}
+				${data && data.data.headers.map(header => `<th>${header}</th>`).join('')}
 				</tr>
 			</thead>
 			<tbody>
@@ -123,21 +123,4 @@ const resposeTableHtml = (data) => {
 		</table>`;
 
 	return html;
-}
-
-function formatUnixTimestamp(timestamp) {
-	// Create a new Date object using the timestamp (in milliseconds)
-	const date = new Date(timestamp * 1000);
-
-	// Get the individual components of the date
-	const year = date.getFullYear();
-	const month = String(date.getMonth() + 1).padStart(2, '0'); // Adding 1 because getMonth() returns zero-based index
-	const day = String(date.getDate()).padStart(2, '0');
-	const hours = String(date.getHours()).padStart(2, '0');
-	const minutes = String(date.getMinutes()).padStart(2, '0');
-
-	// Construct the formatted date string
-	const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}`;
-
-	return formattedDate;
 }

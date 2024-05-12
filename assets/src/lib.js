@@ -38,3 +38,22 @@ export const getMonthName = (monthNumber) => {
 	// Retrieve the month name corresponding to the monthNumber
 	return monthNames[monthNumber - 1];
 }
+
+
+
+
+export function toast_message(type = 'success', message = 'Success', duration = 1000) {
+
+	const toast_wrap = document.getElementById('amapi-toast-wrap');
+
+	toast_wrap.insertAdjacentHTML('beforeend', `<div class="amapi-toast amapi-toast-${type}"><span class="close">&times;</span>${message}</div>`);
+
+	setInterval(() => {
+		const toast = toast_wrap.firstElementChild;
+		setTimeout(() => {
+			toast && toast.remove();
+			ajaxLoader.style.display = 'none';
+		}, duration);
+	}, duration);
+
+}

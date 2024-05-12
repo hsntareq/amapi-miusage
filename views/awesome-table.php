@@ -46,8 +46,10 @@ $transient_timestamp = ( $transient_timestamp - time() ) < 0 ? 0 : $transient_ti
 		$miusage_data_timeout = get_option( '_transient_timeout_' . $transient_timeout );
 		$miusage_option_data = get_option( 'amapi_miusage_data' );
 
-		$headers = json_decode( $miusage_option_data, true )['data']['headers'];
-		$rows = json_decode( $miusage_option_data, true )['data']['rows'];
+		$headers = $miusage_option_data['data']['headers'];
+		$rows = $miusage_option_data['data']['rows'];
+
+		// pr( $miusage_option_data ); // .
 		if ( true === $is_ajax_allowed ) {
 			// pr( $rows );
 			?>
@@ -76,7 +78,7 @@ $transient_timestamp = ( $transient_timestamp - time() ) < 0 ? 0 : $transient_ti
 									<td><?php echo esc_html( $value['fname'] ); ?></td>
 									<td><?php echo esc_html( $value['lname'] ); ?></td>
 									<td><?php echo esc_html( $value['email'] ); ?></td>
-									<td><?php echo esc_html( wp_date( 'Y-m-d H:i', $value['date'] ) ); ?></td>
+									<td><?php echo esc_html( $value['date'] ); ?></td>
 								</tr>
 								<?php
 							}
