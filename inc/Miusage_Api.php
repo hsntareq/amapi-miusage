@@ -12,7 +12,12 @@ class Miusage_Api {
 	use Traits\Singleton, Traits\PluginData;
 
 
-	private $miusage_reset_key = 'amapi_timeout_in';
+	/**
+	 * Miusage reset key.
+	 *
+	 * @var string
+	 */
+	private $transient_timeout = 'amapi_timeout_by';
 	/**
 	 * Miusage_Api constructor.
 	 */
@@ -32,12 +37,22 @@ class Miusage_Api {
 	 * Refresh the data.
 	 */
 	public function amapi_refresh_data() {
-		$get_data = get_transient( get_option( '_transient_timeout_' . $this->miusage_reset_key ) );
-		$option_data = get_option( 'amapi_miusage_data' );
-		// pr( $get_data );
-		wp_send_json_success( $option_data );
+		$is_ajax_allowed = (bool) get_transient( $this->transient_timeout );
+		$miusage_data_timeout = get_option( '_transient_timeout_' . $this->transient_timeout );
+		$miusage_option_data = get_option( 'amapi_miusage_data' );
+		// $this->amapi_get_miusage_data();
 
-		$this->amapi_get_miusage_data();
+		// wp_send_json_error( true === $miusage_data );.
+		if ( true !== $is_ajax_allowed ) {
+			$this->amapi_get_miusage_data();
+		}
+
+		$data = array(
+			'data' => null,
+			'message' => 'Data not found',
+		);
+		wp_send_json_error( $data );
+
 		// if ( $get_data ) {
 		// }
 		// wp_send_json_error( \WP_Error( 'error', 'Data not found' ) );
@@ -60,12 +75,17 @@ class Miusage_Api {
 		if ( is_wp_error( $response ) ) {
 			wp_send_json_error( $response->get_error_message() );
 		}
+		$response = json_decode( wp_remote_retrieve_body( $response ), __return_true() );
 
-		set_transient( $this->miusage_reset_key, __return_true(), MINUTE_IN_SECONDS );
+		foreach ( $response['data']['rows'] as &$row ) {
+			$row['date'] = gmdate( 'Y-m-d h:i:s', $row['date'] );
+		}
 
+		set_transient( $this->transient_timeout, __return_true(), 10 ); // MINUTE_IN_SECONDS.
 		update_option( 'amapi_miusage_data', wp_remote_retrieve_body( $response ) );
 
-		wp_send_json_success( wp_remote_retrieve_body( $response ) );
+		$response['message'] = 'Data refreshed successfully!';
+		wp_send_json_success( $response );
 	}
 
 

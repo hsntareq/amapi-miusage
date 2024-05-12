@@ -70,6 +70,7 @@ class Admin_Page {
 	 * @return void
 	 */
 	public function admin_page() {
+
 		self::render( 'awesome-table' );
 	}
 }

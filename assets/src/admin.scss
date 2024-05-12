@@ -4,6 +4,49 @@
 }
 
 .amapi-admin-page {
+	position: relative;
+
+	#amapi-toast-wrap {
+		position: fixed;
+		right: 20px;
+		bottom: 50px;
+		transition: all .3s;
+
+
+	}
+
+	.amapi-toast {
+		background-color: #fff;
+		margin-bottom: 5px;
+		display: flex;
+		align-items: center;
+		border-radius: 5px;
+
+		span.close {
+			cursor: pointer;
+			font-size: 16px;
+			line-height: 18px;
+			color: #e27730;
+			margin-right: 5px;
+			box-sizing: border-box;
+			width: 18px;
+			height: 18px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding-bottom: 2px;
+			border: 1px solid #e27730;
+			transition: all .3s;
+
+			&:hover {
+				background-color: #e27730;
+				color: #fff;
+			}
+
+		}
+
+	}
+
 	.wrap {
 		margin: 0;
 	}
