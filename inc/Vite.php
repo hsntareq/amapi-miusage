@@ -97,9 +97,9 @@ class Vite {
 			'amapi-admin-script',
 			'amapi_data',
 			array(
-				'ajaxurl' => admin_url( 'admin-ajax.php' ),
-				'nonce'   => wp_create_nonce( 'amapi-nonce' ),
-				'loading' => esc_url( includes_url() . 'js/tinymce/skins/lightgray/img//loader.gif' ),
+				'ajaxurl'        => admin_url( 'admin-ajax.php' ),
+				'nonce'          => wp_create_nonce( 'amapi-nonce' ),
+				'loading'        => esc_url( includes_url() . 'js/tinymce/skins/lightgray/img//loader.gif' ),
 				'loading_inline' => esc_url( includes_url() . 'js/thickbox/loadingAnimation.gif' ),
 			)
 		);
@@ -111,21 +111,19 @@ class Vite {
 	 * @return bool True if reachable, false otherwise.
 	 */
 	public function is_dev_server_running() {
-		$curl_handle = curl_init( $this->dev_server_url );
 
-		// cURL check if channel is open.
-		curl_setopt( $curl_handle, CURLOPT_RETURNTRANSFER, true );
-		if ( ! curl_exec( $curl_handle ) ) {
+		// cURL check if channel is open. $_SERVER['SERVER_ADDR'].
+		if ( ! curl_exec( curl_init( $this->dev_server_url ) ) ) { // phpcs:ignore
 			return false;
 		}
 
 		// Check if the Vite development server is reachable.
 		$response = wp_remote_get( $this->dev_server_url );
-		if ( is_wp_error( $response ) && 200 !== wp_remote_retrieve_response_code( $response ) ) {
+		if ( is_array( $response ) && ! is_wp_error( $response ) ) {
 			return true;
 		}
 
-		return true;
+		return false;
 	}
 
 

@@ -20,7 +20,7 @@ The plugin provides a settings page where you can configure various options, suc
 
 ## Stable Tag
 
-The stable tag for this plugin is dev.
+1.0.0
 
 ## License
 

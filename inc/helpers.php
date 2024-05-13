@@ -13,8 +13,8 @@ if ( ! function_exists( 'amapi' ) ) {
 	 */
 	function amapi() {
 		$info = array(
-			'name'       => 'AM Miusage',
-			'nonce'      => wp_create_nonce( 'amapi-nonce' ),
+			'name'  => 'AM Miusage',
+			'nonce' => wp_create_nonce( 'amapi-nonce' ),
 		);
 		return (object) $info;
 

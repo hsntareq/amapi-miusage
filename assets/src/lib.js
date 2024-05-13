@@ -2,6 +2,35 @@
  * This file contains the helper functions that are used throughout the plugin.
  */
 
+
+
+/**
+ * Function to display an inline message on the screen.
+ *
+ * @param string type
+ * @param string message
+ * @param int duration
+ *
+ * @return void
+ */
+export function inline_message(type = 'success', message = 'Success', duration = 0) {
+
+	const inlineNoticeWrap = document.getElementById('inline_notice');
+	inlineNoticeWrap.innerHTML = '';
+	inlineNoticeWrap.insertAdjacentHTML(
+		'beforeend',
+		`<div class="amapi-toast amapi-toast-${type}"><span class="close">&times;</span> <span>${message}</span></div>`
+	);
+
+	if (duration > 0) {
+		setTimeout(() => {
+			inlineNoticeWrap.innerHTML = '';
+			ajaxLoader.style.display = 'none';
+		}, duration);
+	}
+}
+
+
 /**
  * Function to make an AJAX request to the server.
  */
@@ -46,14 +75,25 @@ export function toast_message(type = 'success', message = 'Success', duration = 
 
 	const toast_wrap = document.getElementById('amapi-toast-wrap');
 
-	toast_wrap.insertAdjacentHTML('beforeend', `<div class="amapi-toast amapi-toast-${type}"><span class="close">&times;</span>${message}</div>`);
+	toast_wrap.insertAdjacentHTML(
+		'beforeend',
+		`<div class="amapi-toast amapi-toast-${type}"><span class="close">&times;</span> <span>${message}</span></div>`
+	);
 
 	setInterval(() => {
 		const toast = toast_wrap.firstElementChild;
 		setTimeout(() => {
 			toast && toast.remove();
-			ajaxLoader.style.display = 'none';
 		}, duration);
 	}, duration);
 
+}
+
+
+export function loading_image(element) {
+	element.innerHTML = '';
+	const loading = document.createElement('img');
+	loading.src = amapi_data.loading_inline;
+	loading.alt = 'Loading...';
+	element.appendChild(loading);
 }

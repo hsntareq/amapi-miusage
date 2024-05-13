@@ -40,7 +40,7 @@ class Admin_Page {
 	 */
 	public function init() {
 		// Add admin assets if the current page is the plugin admin page.
-		if ( isset( $_GET['page'] ) && 'am-miusage' === $_GET['page'] ) {
+		if ( isset( $_GET['page'] ) && 'am-miusage' === $_GET['page'] ) { // phpcs:ignore
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_vite_assets' ) );
 		}
 	}

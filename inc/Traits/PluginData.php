@@ -37,6 +37,33 @@ trait PluginData {
 	}
 
 	/**
+	 * Convert the time to hours, minutes, and seconds.
+	 *
+	 * @param mixed $timestamp timeString.
+	 *
+	 * @return string
+	 */
+	public function convert_to_hms( $timestamp ) {
+		// Get current Unix timestamp.
+		$current_time = time();
+
+		// Calculate the difference in seconds.
+		$difference_in_seconds = $timestamp - $current_time;
+
+		// Calculate remaining hours, minutes, and seconds.
+		$remaining_hours   = floor( $difference_in_seconds / 3600 ); // Calculate remaining hours.
+		$remaining_minutes = floor( ( $difference_in_seconds % 3600 ) / 60 ); // Calculate remaining minutes.
+		$remaining_seconds = $difference_in_seconds % 60; // Calculate remaining seconds.
+
+		// Format the remaining time.
+		$formatted_time = sprintf( '%02d:%02d:%02d', $remaining_hours, $remaining_minutes, $remaining_seconds );
+
+		// Return formatted remaining time.
+		return $formatted_time;
+	}
+
+
+	/**
 	 * Get the plugin version.
 	 *
 	 * @param string $key key.
@@ -101,7 +128,6 @@ trait PluginData {
 	 *
 	 * @return string
 	 */
-
 	public static function get_text_domain() {
 		return self::get_data( 'TextDomain' );
 	}
@@ -195,5 +221,4 @@ trait PluginData {
 	public static function get_author_email() {
 		return self::get_data( 'AuthorEmail' );
 	}
-
 }
