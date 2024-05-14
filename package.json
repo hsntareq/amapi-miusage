@@ -5,19 +5,24 @@
 	"main": "vite.config.js",
 	"type": "module",
 	"scripts": {
-		"wdev": "wp-scripts start",
-		"dev": "vite",
+		"vdev": "vite",
+		"dev": "concurrently \"vite\" \"cd amapi-block && npm run start\"",
 		"build": "vite build",
 		"preview": "vite preview",
 		"zip": "node bundle.js"
 	},
 	"devDependencies": {
 		"@wordpress/scripts": "^27.8.0",
+		"concurrently": "^8.2.2",
 		"dir-archiver": "^2.1.0",
 		"sass": "^1.72.0",
 		"vite": "^5.1.6"
 	},
 	"keywords": [],
 	"author": "",
-	"license": "ISC"
+	"license": "ISC",
+	"dependencies": {
+		"@wordpress/block-editor": "^12.25.0",
+		"@wordpress/blocks": "^12.34.0"
+	}
 }

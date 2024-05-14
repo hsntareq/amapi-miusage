@@ -8,6 +8,24 @@
       "admin.css"
     ]
   },
+  "assets/src/block-editor.js": {
+    "file": "block-editor.js",
+    "name": "block-editor",
+    "src": "assets/src/block-editor.js",
+    "isEntry": true,
+    "css": [
+      "block-editor.css"
+    ]
+  },
+  "assets/src/block.js": {
+    "file": "block.js",
+    "name": "block",
+    "src": "assets/src/block.js",
+    "isEntry": true,
+    "css": [
+      "block.css"
+    ]
+  },
   "assets/src/front.js": {
     "file": "front.js",
     "name": "front",

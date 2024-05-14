@@ -45,14 +45,18 @@ $transient_timestamp = ( $transient_timestamp - time() ) < 0 ? 0 : $transient_ti
 		$miusage_option_data  = get_option( 'amapi_miusage_data' );
 
 		$table_title = $miusage_option_data['title'];
+		$table_time  = get_option( 'amapi_miusage_date' );
 		$headers     = $miusage_option_data['data']['headers'];
 		$rows        = $miusage_option_data['data']['rows'];
 
 		if ( ! empty( $miusage_option_data ) ) {
 			?>
 			<div id="amapi-page-content">
+				<div class="amapi-table-info">
+					<h3><?php echo esc_html( $table_title ); ?></h3>
+					<span>Data added at: <?php echo esc_html( $table_time ); ?></span>
+				</div>
 				<table class="wp-list-table widefat fixed striped table-view-list datas amapi-datatable">
-					<caption><?php echo esc_html( $table_title ); ?></caption>
 					<thead>
 						<tr>
 							<?php

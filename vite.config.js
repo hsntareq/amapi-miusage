@@ -8,16 +8,23 @@ export default defineConfig({
 		manifest: true,
 		assetsDir: './img',
 		outDir: 'assets/dist',
+		optimizeDeps: {
+			include: [
+				'assets/src/admin.js',
+				'assets/src/front.js'
+			],
+		},
 		rollupOptions: {
 			input: {
 				'admin': '/assets/src/admin.js',
-				'front': '/assets/src/front.js'
+				'front': '/assets/src/front.js',
 			},
 			output: {
 				entryFileNames: '[name].js',
 				assetFileNames: '[name][extname]',
 				chunkFileNames: '[name].min.[extname]',
 			},
+			refresh: true,
 		},
 	},
 

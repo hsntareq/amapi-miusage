@@ -22,6 +22,13 @@ class Miusage_Api {
 	private $amapi_option_key = 'amapi_miusage_data';
 
 	/**
+	 * Miusage post date key.
+	 *
+	 * @var string
+	 */
+	private $amapi_option_date_key = 'amapi_miusage_date';
+
+	/**
 	 * Transient timeout key.
 	 *
 	 * @var string
@@ -55,7 +62,7 @@ class Miusage_Api {
 
 		$data = array(
 			'data'    => null,
-			'message' => __( 'You need to wait for ', 'am-miusage' ) . '<u>' . self::convert_to_hms( $miusage_data_timeout ) . '</u> ' . __( ' to refresh the data.', 'am-miusage' ),
+			'message' => __( 'Data refresh available in ', 'am-miusage' ) . '<u>' . self::convert_to_hms( $miusage_data_timeout ) . '</u> ',
 		);
 
 		wp_send_json_error( $data );
@@ -90,6 +97,7 @@ class Miusage_Api {
 		set_transient( $this->transient_timeout, __return_true(), 10 ); // Set the transient HOUR_IN_SECONDS.
 
 		update_option( $this->amapi_option_key, $response ); // Update the option.
+		update_option( $this->amapi_option_date_key, gmdate( 'Y-m-d h:i:s', time() ) ); // Update the option.
 
 		$response['message'] = __( 'Data refreshed successfully!', 'am-miusage' ); // Add a message to the response.
 

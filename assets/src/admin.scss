@@ -110,17 +110,26 @@
 				box-sizing: border-box
 			}
 
+			.amapi-table-info {
+				padding-block-end: 20px;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+
+				h3{
+					font-size: 16px;
+					font-weight: 500;
+					margin-block: 0;
+				}
+			}
+
 			table {
 
 				width: 100%;
 				border-collapse: collapse;
 				margin-block-end: 20px;
 
-				caption {
-					font-size: 16px;
-					padding-block-end: 20px;
-					text-align: left;
-				}
+
 
 				th,
 				td {
