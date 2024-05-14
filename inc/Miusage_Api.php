@@ -47,6 +47,11 @@ class Miusage_Api {
 	public function init() {
 		add_action( 'wp_ajax_amapi_refresh_data', array( $this, 'amapi_refresh_data' ) );
 		add_action( 'wp_ajax_nopriv_amapi_refresh_data', array( $this, 'amapi_refresh_data' ) );
+
+		if ( defined( 'WP_CLI' ) && WP_CLI ) {
+			\WP_CLI::add_command( 'amapi refresh', array( $this, 'amapi_wp_cli_refresh_data' ) );
+		}
+
 	}
 
 	/**
@@ -62,7 +67,7 @@ class Miusage_Api {
 
 		$data = array(
 			'data'    => null,
-			'message' => __( 'Data refresh available in ', 'am-miusage' ) . '<u>' . self::convert_to_hms( $miusage_data_timeout ) . '</u> ',
+			'message' => __( 'Data can be refreshed in ', 'am-miusage' ) . '<u>' . self::convert_to_hms( $miusage_data_timeout ) . '</u> ',
 		);
 
 		wp_send_json_error( $data );
@@ -72,14 +77,37 @@ class Miusage_Api {
 	 * Refresh the data.
 	 */
 	public function amapi_get_miusage_data() {
-
 		// Return if current user does not have permission and nonce is not correct.
 		if ( ! current_user_can( 'manage_options' ) || ! check_ajax_referer( 'amapi-nonce', 'nonce', false ) ) {
 			wp_send_json_error( 'Unauthorized access!' );
 		}
 
-		// Sanitize the post data.
-		$_post    = self::sanitize_array( $_POST );
+		$this->amapi_request_api();
+	}
+
+	/**
+	 * WP_CLI Refresh the data.
+	 *
+	 * @return void
+	 */
+	public function amapi_wp_cli_refresh_data() {
+
+		if ( true === $this->amapi_request_api() ) {
+			\WP_CLI::success( 'Miusage data refreshed successfully!' );
+			return;
+		}
+
+		\WP_CLI::error( 'Failed to refresh data from server!' );
+		return;
+	}
+
+	/**
+	 * Refresh the data.
+	 *
+	 * @return bool|void
+	 */
+	private function amapi_request_api() {
+
 		$response = wp_remote_get( 'https://miusage.com/v1/challenge/1/' );
 
 		// Return if there is an error.
@@ -100,6 +128,10 @@ class Miusage_Api {
 		update_option( $this->amapi_option_date_key, gmdate( 'Y-m-d h:i:s', time() ) ); // Update the option.
 
 		$response['message'] = __( 'Data refreshed successfully!', 'am-miusage' ); // Add a message to the response.
+
+		if ( defined( 'WP_CLI' ) && WP_CLI ) {
+			return true;
+		}
 
 		wp_send_json_success( $response ); // Return the response.
 	}

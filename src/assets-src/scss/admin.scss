@@ -6,6 +6,16 @@
 .amapi-admin-page {
 	position: relative;
 
+	#toast_message {
+		.amapi-toast {
+			padding-block: 5px;
+			padding-inline-end: 10px;
+			padding-inline-start: 5px;
+			margin-block-end: 0;
+			box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+		}
+	}
+
 	#amapi-toast-wrap {
 		position: fixed;
 		right: 20px;

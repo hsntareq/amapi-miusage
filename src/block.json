@@ -11,6 +11,12 @@
 	"supports": {
 		"html": false
 	},
+	"attributes": {
+		"datatable": {
+			"type": "string",
+			"default": "Working..."
+		}
+	},
 	"textdomain": "amapi-block",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",

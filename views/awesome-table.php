@@ -14,8 +14,10 @@ $transient_timestamp = ( $transient_timestamp - time() ) < 0 ? 0 : $transient_ti
 <div class="amapi-admin-page" id="amapi-admin-page">
 	<div id="amapi-page-header" style="display:flex;align-items:center;justify-content:space-between">
 		<h1><?php echo esc_attr( get_admin_page_title() ); ?></h1>
+		<div id="toast_message" style="display:none">
+			<div class="notice is-dismissible"></div>
+		</div>
 	</div>
-
 	<div class="wrap" id="wp-mail-smtp">
 		<div style="display: flex;align-items:center;justify-content:space-between">
 			<div class="amapi-page-title"

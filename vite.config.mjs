@@ -24,7 +24,6 @@ export default defineConfig({
 				assetFileNames: '[name][extname]',
 				chunkFileNames: '[name].min.[extname]',
 			},
-			refresh: true,
 		},
 	},
 

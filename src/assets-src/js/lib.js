@@ -68,17 +68,17 @@ export const getMonthName = (monthNumber) => {
 	return monthNames[monthNumber - 1];
 }
 
-
-
-
 export function toast_message(type = 'success', message = 'Success', duration = 1000) {
 
 	const toast_wrap = document.getElementById('amapi-toast-wrap');
+	const toast_message = document.getElementById('toast_message');
 
-	toast_wrap.insertAdjacentHTML(
+	toast_message.innerHTML = `<div class="notice notice-${type} notice-alt is-dismissible"><p>${message}</p><button type="button" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></button></div>`;
+	toast_message.style.display = 'block';
+	/* toast_wrap.insertAdjacentHTML(
 		'beforeend',
 		`<div class="amapi-toast amapi-toast-${type}"><span class="close">&times;</span> <span>${message}</span></div>`
-	);
+	); */
 
 	setInterval(() => {
 		const toast = toast_wrap.firstElementChild;

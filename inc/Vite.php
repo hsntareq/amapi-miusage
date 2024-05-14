@@ -29,6 +29,7 @@ class Vite {
 	 * @var string|null
 	 */
 	private $dev_server_url;
+
 	/**
 	 * Vite development server URL (if available).
 	 *
@@ -111,18 +112,11 @@ class Vite {
 	 * @return bool True if reachable, false otherwise.
 	 */
 	public function is_dev_server_running() {
-
-		// cURL check if channel is open. $_SERVER['SERVER_ADDR'].
-		if ( ! curl_exec( curl_init( $this->dev_server_url ) ) ) { // phpcs:ignore
-			return false;
-		}
-
 		// Check if the Vite development server is reachable.
 		$response = wp_remote_get( $this->dev_server_url );
 		if ( is_array( $response ) && ! is_wp_error( $response ) ) {
 			return true;
 		}
-
 		return false;
 	}
 

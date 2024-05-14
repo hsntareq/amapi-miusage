@@ -1,7 +1,6 @@
 <?php
 /**
- * Vite development server URL (if available).
+ * Vite development server URL
  *
  * @package wordpress-plugin
  */
-

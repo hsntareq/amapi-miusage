@@ -1,5 +1,5 @@
 import './global';
-import { ajax_request, inline_message } from './lib';
+import { ajax_request, inline_message, toast_message } from './lib';
 
 
 const amapiRefreshButton = document.getElementById('amapi_refresh_button');
@@ -25,7 +25,7 @@ function handleRequestingData(amapiContent) {
 				amapiContent.innerHTML = resposeTableHtml(response.data);
 			}
 
-			inline_message(response.success, response.data.message);
+			toast_message(response.success ? 'success' : 'warning', response.data.message);
 
 			ajaxLoader.style.display = 'none';
 		});

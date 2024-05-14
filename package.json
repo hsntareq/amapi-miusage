@@ -6,8 +6,9 @@
 	"scripts": {
 		"vdev": "vite --input-type=module",
 		"wpstart": "wp-scripts start --output-path=assets/block",
-		"dev": "concurrently \"vite\" \" npm run wpstart\"",
-		"build": "vite build",
+		"dev": "concurrently \"vite\" \" npm run wpstart\" && npm run build",
+		"build": "vite build && echo '\n Vite build done!'",
+		"dev-build": "vite build",
 		"preview": "vite preview",
 		"zip": "node bundle.js"
 	},
