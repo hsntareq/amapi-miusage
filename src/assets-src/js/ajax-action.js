@@ -1,5 +1,5 @@
 import './global';
-import { ajax_request, inline_message } from '../lib';
+import { ajax_request, inline_message } from './lib';
 
 
 const amapiRefreshButton = document.getElementById('amapi_refresh_button');
@@ -39,21 +39,6 @@ const resposeTableHtml = (data) => {
 		return `<tr><td>${row.id}</td><td>${row.fname}</td><td>${row.lname}</td><td>${row.email}</td><td>${row.date}</td></tr>`;
 	}).join('');
 
-	return `<table class="wp-list-table widefat fixed striped table-view-list datas amapi-datatable"><caption>${data.title}</caption><thead>${theadData}</thead><tbody>${tbodyData}</tbody></table>`;
+	return `<h3 class="amapi-table-title">${data.title}</h3><table class="wp-list-table widefat fixed striped table-view-list datas amapi-datatable"><thead>${theadData}</thead><tbody>${tbodyData}</tbody></table>`;
 }
 
-
-function ajax_refresh_table_data(amapiContent) {
-	// loading_image(amapiContent);
-	ajax_request('amapi_refresh_data', { name: 'John Doe' })
-		.then(response => {
-			if (response.success) {
-				amapiContent.innerHTML = resposeTableHtml(JSON.parse(response.data));
-				return;
-				// amapiPageContent.removeAttribute('ajax_call');
-			}
-			inline_message('error', response.data.message, 3000);
-			return;
-
-		});
-}

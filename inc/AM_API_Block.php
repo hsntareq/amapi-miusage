@@ -30,8 +30,25 @@ class AM_API_Block {
 	 * Register the block.
 	 */
 	public function register_block() {
-		register_block_type( AM_API_PLUGIN_PATH . '/amapi-block/build' );
+		register_block_type( AM_API_PLUGIN_PATH . '/assets/block' );
+		// Register the block
+		register_block_type(
+			'create-block/amapi-block',  // Block name
+			array(
+				'render_callback' => array( $this, 'render_custom_gutenberg_block' ),  // Callback function to render the block
+			)
+		);
 	}
+
+
+	public function render_custom_gutenberg_block( $attributes ) {
+		// Extract the content attribute
+		$content = $attributes['content'];
+
+		// Render the block output
+		return "<div class='custom-gutenberg-block'>$content</div>";
+	}
+
 
 	/**
 	 * Render the block.

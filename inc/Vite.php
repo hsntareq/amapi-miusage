@@ -132,7 +132,7 @@ class Vite {
 	 */
 	private function enqueue_dev_assets() {
 		if ( $this->is_dev_server_running() ) {
-			wp_enqueue_script( 'amapi-admin-script', $this->dev_server . '/assets/src/admin.js', array( 'jquery' ), self::get_data( 'Version' ), true );
+			wp_enqueue_script( 'amapi-admin-script', $this->dev_server . '/src/assets-src/js/admin.js', array( 'jquery' ), self::get_data( 'Version' ), true );
 			// Add type="module" attribute to the script tag.
 			add_filter( 'script_loader_tag', array( $this, 'add_module_type_to_script' ), 10, 3 );
 		}

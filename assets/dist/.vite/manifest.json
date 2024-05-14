@@ -1,35 +1,17 @@
 {
-  "assets/src/admin.js": {
+  "src/src-assets/admin.js": {
     "file": "admin.js",
     "name": "admin",
-    "src": "assets/src/admin.js",
+    "src": "src/src-assets/admin.js",
     "isEntry": true,
     "css": [
       "admin.css"
     ]
   },
-  "assets/src/block-editor.js": {
-    "file": "block-editor.js",
-    "name": "block-editor",
-    "src": "assets/src/block-editor.js",
-    "isEntry": true,
-    "css": [
-      "block-editor.css"
-    ]
-  },
-  "assets/src/block.js": {
-    "file": "block.js",
-    "name": "block",
-    "src": "assets/src/block.js",
-    "isEntry": true,
-    "css": [
-      "block.css"
-    ]
-  },
-  "assets/src/front.js": {
+  "src/src-assets/front.js": {
     "file": "front.js",
     "name": "front",
-    "src": "assets/src/front.js",
+    "src": "src/src-assets/front.js",
     "isEntry": true,
     "css": [
       "front.css"

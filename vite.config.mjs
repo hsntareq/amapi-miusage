@@ -10,14 +10,14 @@ export default defineConfig({
 		outDir: 'assets/dist',
 		optimizeDeps: {
 			include: [
-				'assets/src/admin.js',
-				'assets/src/front.js'
+				'src/assets-src/js/admin.js',
+				'src/assets-src/js/front.js'
 			],
 		},
 		rollupOptions: {
 			input: {
-				'admin': '/assets/src/admin.js',
-				'front': '/assets/src/front.js',
+				'admin': '/src/assets-src/js/admin.js',
+				'front': '/src/assets-src/js/front.js',
 			},
 			output: {
 				entryFileNames: '[name].js',

@@ -3,10 +3,10 @@
 	"version": "1.0.0",
 	"description": "",
 	"main": "vite.config.js",
-	"type": "module",
 	"scripts": {
-		"vdev": "vite",
-		"dev": "concurrently \"vite\" \"cd amapi-block && npm run start\"",
+		"vdev": "vite --input-type=module",
+		"wpstart": "wp-scripts start --output-path=assets/block",
+		"dev": "concurrently \"vite\" \" npm run wpstart\"",
 		"build": "vite build",
 		"preview": "vite preview",
 		"zip": "node bundle.js"
