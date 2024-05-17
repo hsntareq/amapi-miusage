@@ -8,4 +8,4 @@ node_modules/
 *.lock
 *.zip
 assets/dist/*
-assets/build/*
+assets/block/*

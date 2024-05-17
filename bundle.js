@@ -11,3 +11,4 @@ try {
 	console.error('Error creating zip file:', error);
 	process.exit(1);
 }
+
