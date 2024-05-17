@@ -13,7 +13,7 @@ use AmMiusage\Vite;
  * Admin Page.
  */
 class Admin_Page {
-	use Traits\Singleton, Traits\Render;
+	use Traits\Singleton, Traits\Render; // Use the Singleton and Render trait.
 
 	/**
 	 * $instance

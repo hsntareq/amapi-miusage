@@ -1,6 +1,8 @@
 <?php
 /**
  * AM API Block Class
+ *
+ * @package wordpress-plugin
  */
 
 namespace AmMiusage;
@@ -9,8 +11,7 @@ namespace AmMiusage;
  * AM API Block Class
  */
 class AM_API_Block {
-
-	use Traits\Singleton, Traits\PluginData;
+	use Traits\Singleton, Traits\PluginData; // Use the Singleton and PluginData trait.
 
 	/**
 	 * AM API Block constructor.
@@ -24,8 +25,20 @@ class AM_API_Block {
 	 */
 	public function init() {
 		add_action( 'init', array( $this, 'register_block' ) );
+		add_action( 'enqueue_block_editor_assets', array( $this, 'amapi_enqueue_assets' ) );
 	}
-
+	/**
+	 * Enqueue assets.
+	 *
+	 * @return void
+	 */
+	public function amapi_enqueue_assets() {
+		wp_localize_script(
+			'wp-blocks',
+			'amapi_data',
+			self::get_localize()
+		);
+	}
 	/**
 	 * Register the block.
 	 */
@@ -66,7 +79,8 @@ class AM_API_Block {
 			'am-miusage-block-editor',
 			esc_url( AM_API_PLUGIN_URL . 'assets/dist/block-editor.js' ),
 			array( 'wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-i18n' ),
-			AM_API_PLUGIN_VERSION
+			AM_API_PLUGIN_VERSION,
+			true
 		);
 
 		// Register the block script.
@@ -74,7 +88,8 @@ class AM_API_Block {
 			'am-miusage-block',
 			esc_url( AM_API_PLUGIN_URL . 'assets/dist/block.js' ),
 			array( 'wp-blocks', 'wp-element', 'wp-components', 'wp-i18n' ),
-			AM_API_PLUGIN_VERSION
+			AM_API_PLUGIN_VERSION,
+			true
 		);
 
 		// Register the editor style.

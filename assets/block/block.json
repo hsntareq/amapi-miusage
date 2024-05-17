@@ -12,9 +12,29 @@
     "html": false
   },
   "attributes": {
-    "datatable": {
-      "type": "string",
-      "default": "Working..."
+    "apiDataLoading": {
+      "type": "boolean",
+      "default": false
+    },
+    "showIdColumn": {
+      "type": "boolean",
+      "default": true
+    },
+    "showFirstNameColumn": {
+      "type": "boolean",
+      "default": true
+    },
+    "showLastNameColumn": {
+      "type": "boolean",
+      "default": true
+    },
+    "showEmailColumn": {
+      "type": "boolean",
+      "default": true
+    },
+    "showDateColumn": {
+      "type": "boolean",
+      "default": true
     }
   },
   "textdomain": "amapi-block",

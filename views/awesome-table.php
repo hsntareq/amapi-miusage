@@ -26,8 +26,7 @@ $transient_timestamp = ( $transient_timestamp - time() ) < 0 ? 0 : $transient_ti
 				<?php esc_attr_e( 'API Data Retrieval from ', 'am-miusage' ); ?> <a href="<?php echo esc_url( 'https://miusage.com/v1/challenge/1/' ); ?>" target="_blank" class="tab-nav"> <?php esc_attr_e( 'miusage.com', 'am-miusage' ); ?> </a>
 				</div>
 				<div id="refresh_button_parent" style="display:flex;align-items:center;gap:10px;">
-					<div id="inline_notice" data-amapi="<?php echo esc_attr( $available_time ); ?>"
-						data-transient-time="<?php echo esc_attr( $transient_timestamp ?? 0 ); ?>"></div>
+					<div id="inline_notice"></div>
 					<div style="width:22px;">
 						<div id="ajax_loader" style="display:none;">
 							<span class="spinner is-active" style="float:none;margin:0"></span>

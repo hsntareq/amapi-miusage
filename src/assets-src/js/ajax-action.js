@@ -1,31 +1,34 @@
 import './global';
-import { ajax_request, inline_message, toast_message } from './lib';
-
+import { ajax_request, amapi_countdown, toast_message } from './lib';
 
 const amapiRefreshButton = document.getElementById('amapi_refresh_button');
 const amapiPageContent = document.getElementById('amapi-page-content');
 const ajaxLoader = document.getElementById('ajax_loader');
 
 document.addEventListener('DOMContentLoaded', async () => {
-
+	handleRequestingData(amapiPageContent, false);
 	if (amapiPageContent) {
-		amapiRefreshButton && amapiRefreshButton.addEventListener('click', async () => {
-			handleRequestingData(amapiPageContent);
+		amapiRefreshButton && amapiRefreshButton.addEventListener('click', async (event) => {
+			handleRequestingData(amapiPageContent, true);
 		});
 	}
 
 });
 
-function handleRequestingData(amapiContent) {
-	ajaxLoader.style.display = 'block';
-	ajax_request('amapi_refresh_data', { name: 'John Doe' })
-		.then(response => {
+function handleRequestingData(amapiContent, event = false) {
+	event && (ajaxLoader.style.display = 'block');
 
-			if (response.success) {
+	ajax_request('amapi_refresh_data', { is_event: (event ? true : false) })
+		.then(response => {
+			setTimeout(() => {
+				amapi_countdown(response.data.remaining);
+			});
+
+			if (event && response.success) {
 				amapiContent.innerHTML = resposeTableHtml(response.data);
 			}
 
-			toast_message(response.success ? 'success' : 'warning', response.data.message);
+			event && toast_message(response.success ? 'success' : 'warning', response.data.message, 2000);
 
 			ajaxLoader.style.display = 'none';
 		});

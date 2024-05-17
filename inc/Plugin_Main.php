@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Plugin_Main Class
  */
 final class Plugin_Main {
-	use Traits\Singleton, Traits\PluginData;
+	use Traits\Singleton, Traits\PluginData; // Use the Singleton and PluginData trait.
 
 	/**
 	 * Class constructor (private to enforce singleton pattern).

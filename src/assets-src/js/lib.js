@@ -80,13 +80,56 @@ export function toast_message(type = 'success', message = 'Success', duration = 
 		`<div class="amapi-toast amapi-toast-${type}"><span class="close">&times;</span> <span>${message}</span></div>`
 	); */
 
-	setInterval(() => {
-		const toast = toast_wrap.firstElementChild;
-		setTimeout(() => {
-			toast && toast.remove();
-		}, duration);
+	setTimeout(() => {
+		toast_message.innerHTML = '';
 	}, duration);
 
+}
+
+// Function to format time to HH:MM:SS format
+function formatTime(hours, minutes, seconds) {
+	// Add leading zeros if needed
+	hours = String(hours).padStart(2, '0');
+	minutes = String(minutes).padStart(2, '0');
+	seconds = String(seconds).padStart(2, '0');
+
+	return hours + ':' + minutes + ':' + seconds;
+}
+
+
+// Function to start the countdown timer
+export function amapi_countdown(timeString) {
+	// Parse the time string to extract hours, minutes, and seconds
+	let countElement = document.getElementById('inline_notice');
+
+	let [hours, minutes, seconds] = timeString.split(':').map(Number);
+
+	// Calculate total seconds
+	let totalSeconds = hours * 3600 + minutes * 60 + seconds;
+
+	// Update countdown every second
+	let countdownInterval = setInterval(function () {
+		// Calculate remaining hours, minutes, and seconds
+		let remainingHours = Math.floor(totalSeconds / 3600);
+		let remainingMinutes = Math.floor((totalSeconds % 3600) / 60);
+		let remainingSeconds = totalSeconds % 60;
+
+		// Format remaining time
+		let formattedTime = formatTime(remainingHours, remainingMinutes, remainingSeconds);
+
+		// Display formatted time
+		// console.log(formattedTime);
+		countElement.textContent = `Countdown: ${formattedTime}`;
+
+		// Decrease total seconds by 1
+		totalSeconds--;
+
+		// Stop countdown when time reaches zero
+		if (totalSeconds < 0) {
+			clearInterval(countdownInterval);
+			countElement.textContent = 'Countdown over! Refresh data with a click here →';
+		}
+	}, 1000); // Update every second
 }
 
 

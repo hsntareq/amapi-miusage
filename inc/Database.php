@@ -11,7 +11,7 @@ namespace AmMiusage;
  * Database Class.
  */
 class Database {
-	use Traits\Singleton;
+	use Traits\Singleton; // Use the Singleton trait.
 
 	/**
 	 * $table_name

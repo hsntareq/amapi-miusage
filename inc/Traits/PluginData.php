@@ -17,6 +17,22 @@ trait PluginData {
 
 	}
 
+
+
+	/**
+	 * Get the plugin version.
+	 *
+	 * @return string|array
+	 */
+	public static function get_localize() {
+		return array(
+			'ajaxurl'        => admin_url( 'admin-ajax.php' ),
+			'nonce'          => wp_create_nonce( 'amapi-nonce' ),
+			'loading'        => esc_url( includes_url() . 'js/tinymce/skins/lightgray/img//loader.gif' ),
+			'loading_inline' => esc_url( includes_url() . 'js/thickbox/loadingAnimation.gif' ),
+		);
+	}
+
 	/**
 	 * Sanitize an array.
 	 *

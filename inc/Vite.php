@@ -15,7 +15,8 @@ use WpdbCrud\Singleton;
  * Class Vite
  */
 class Vite {
-	use Traits\Singleton, Traits\PluginData;
+	use Traits\Singleton, Traits\PluginData; // Use the Singleton and PluginData trait.
+
 	/**
 	 * Path to the manifest.json file.
 	 *
@@ -97,12 +98,7 @@ class Vite {
 		wp_localize_script(
 			'amapi-admin-script',
 			'amapi_data',
-			array(
-				'ajaxurl'        => admin_url( 'admin-ajax.php' ),
-				'nonce'          => wp_create_nonce( 'amapi-nonce' ),
-				'loading'        => esc_url( includes_url() . 'js/tinymce/skins/lightgray/img//loader.gif' ),
-				'loading_inline' => esc_url( includes_url() . 'js/thickbox/loadingAnimation.gif' ),
-			)
+			self::get_localize()
 		);
 	}
 
