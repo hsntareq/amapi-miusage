@@ -13,10 +13,11 @@ $api_data = get_option( 'amapi_miusage_data' );
 
 $table_title = $api_data['title'];
 $table_data  = $api_data['data']['rows'];
-
 ?>
 <div <?php echo wp_kses_data( get_block_wrapper_attributes() ); ?>>
-	<h3 class="amapi-table-title"><?php echo esc_attr( $table_title ); ?></h3>
+	<?php if ( $attributes['blockTitle'] ) : ?>
+		<h3 class="amapi-table-title"><?php echo esc_attr( $table_title ); ?></h3>
+	<?php endif; ?>
 
 	<table>
 		<thead>
