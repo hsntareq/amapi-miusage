@@ -1,6 +1,6 @@
 <?php
 /**
- * Template for AM Miusage plugin page table
+ * Template for Hasan Miusage plugin page table
  *
  * @package Miusage
  * @since   1.0.0
@@ -19,7 +19,7 @@
 			<div class="amapi-page-title"
 				style="width:100%;display:flex;align-items:center;justify-content:space-between;">
 				<div>
-				<?php esc_attr_e( 'API Data Retrieval from ', 'am-miusage' ); ?> <a href="<?php echo esc_url( 'https://miusage.com/v1/challenge/1/' ); ?>" target="_blank" class="tab-nav"> <?php echo esc_attr( 'miusage.com' ); ?> </a>
+				<?php esc_attr_e( 'API Data Retrieval from ', 'hasan-miusage' ); ?> <a href="<?php echo esc_url( 'https://miusage.com/v1/challenge/1/' ); ?>" target="_blank" class="tab-nav"> <?php echo esc_attr( 'miusage.com' ); ?> </a>
 				</div>
 				<div id="refresh_button_parent" style="display:flex;align-items:center;gap:10px;">
 					<div id="inline_notice"></div>
@@ -29,7 +29,7 @@
 						</div>
 					</div>
 					<button class="button button-primary" id="amapi_refresh_button">
-						<?php esc_html_e( 'Refresh', 'am-miusage' ); ?>
+						<?php esc_html_e( 'Refresh', 'hasan-miusage' ); ?>
 					</button>
 				</div>
 			</div>

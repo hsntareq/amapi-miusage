@@ -5,9 +5,9 @@
  * @package wordpress-plugin
  */
 
-namespace AmMiusage;
+namespace HasanMiusage;
 
-use AmMiusage\Vite;
+use HasanMiusage\Vite;
 
 /**
  * Admin Page.
@@ -40,7 +40,7 @@ class Admin_Page {
 	 */
 	public function init() {
 		// Add admin assets if the current page is the plugin admin page.
-		if ( isset( $_GET['page'] ) && 'am-miusage' === $_GET['page'] ) { // phpcs:ignore
+		if ( isset( $_GET['page'] ) && 'hasan-miusage' === $_GET['page'] ) { // phpcs:ignore
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_vite_assets' ) );
 		}
 	}
@@ -61,7 +61,7 @@ class Admin_Page {
 	 * @return void
 	 */
 	public function add_admin_menu() {
-		add_menu_page( __( 'AM Miusage' ), __( 'AM Miusage' ), 'manage_options', 'am-miusage', array( $this, 'admin_page' ), 'dashicons-database', 10 );
+		add_menu_page( __( 'Hasan Miusage' ), __( 'Hasan Miusage' ), 'manage_options', 'hasan-miusage', array( $this, 'admin_page' ), 'dashicons-database', 10 );
 	}
 
 	/**

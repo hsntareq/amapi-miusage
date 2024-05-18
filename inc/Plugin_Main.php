@@ -7,7 +7,7 @@
  * @since 1.0
  */
 
-namespace AmMiusage;
+namespace HasanMiusage;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -87,7 +87,7 @@ final class Plugin_Main {
 
 		if ( false === get_option( 'amapi_plugin_installed' ) ) {
 			// Add option data to the database.
-			\AmMiusage\Miusage_Api::get_instance()->amapi_request_api_activate();
+			\HasanMiusage\Miusage_Api::get_instance()->amapi_request_api_activate();
 		}
 
 		$installed = get_option( 'amapi_plugin_installed' ); // check if the plugin is already installed.

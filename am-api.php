@@ -1,13 +1,13 @@
 <?php
 /**
- * Plugin Name: AM Miusage
- * Plugin URI: https://www.am-miusage.com
+ * Plugin Name: Hasan Miusage
+ * Plugin URI: https://www.hasan-miusage.com
  * Version: 1.0.0
  * Author: Hasan Tareq
  * Author URI: https://github.com/hsntareq
  * License: GPLv2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain: am-miusage
+ * Text Domain: hasan-miusage
  * Description: This plugin is designed to generate a Gutenberg block that showcases Miusage API data on the front end, while facilitating data management from the back end. Api url: <a target="_blank" href="https://miusage.com/v1/challenge/1" >https://miusage.com/v1/challenge/1</a>
  * Requires at least: 5.8
  * Requires PHP: 7.0
@@ -34,10 +34,10 @@ if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
 }
 
 /**
- * FILEPATH: /wp-content/plugins/am-api/am-api.php
+ * FILEPATH: /wp-content/plugins/hasan-miusage/hasan-miusage.php
  *
  * Initializes the AM API plugin by creating an instance of the PluginMain class.
  *
  * @since 1.0.0
  */
-AmMiusage\Plugin_Main::get_instance();
+HasanMiusage\Plugin_Main::get_instance();

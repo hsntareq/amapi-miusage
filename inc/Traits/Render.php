@@ -5,7 +5,7 @@
  * @package wordpress-plugin
  */
 
-namespace AmMiusage\Traits;
+namespace HasanMiusage\Traits;
 
 trait Render {
 	/**

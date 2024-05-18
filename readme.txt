@@ -1,4 +1,4 @@
-=== AM Miusage ===
+=== Hasan Miusage ===
 Contributors: hsntareq
 Donate link: http://donate-hsntareq.com/
 Tags: api, data, ajax
@@ -43,11 +43,11 @@ This section describes how to install the plugin and get it working.
 
 e.g.
 
-1. Upload `am-api` directory to the `/wp-content/plugins/` directory
-2. OR, upload `am-api.zip` to WordPress's add => upload plugin page
+1. Upload `hasan-miusage` directory to the `/wp-content/plugins/` directory
+2. OR, upload `hasan-miusage.zip` to WordPress's add => upload plugin page
 3. Activate the plugin through the 'Plugins' menu in WordPress
-4. Visit WordPress admin navigation items named `AM Miusage` to see miusage.com's api data.
-5. Add `AM Miusage` block from FSE pages and view after saving.
+4. Visit WordPress admin navigation items named `Hasan Miusage` to see miusage.com's api data.
+5. Add `Hasan Miusage` block from FSE pages and view after saving.
 
 == Frequently Asked Questions ==
 

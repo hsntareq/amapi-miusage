@@ -23,19 +23,19 @@ $table_data  = $api_data['data']['rows'];
 		<thead>
 			<tr>
 				<?php if ( $attributes['showIdColumn'] ) : ?>
-					<th><?php esc_attr_e( 'ID', 'am-miusage' ); ?></th>
+					<th><?php esc_attr_e( 'ID', 'hasan-miusage' ); ?></th>
 				<?php endif; ?>
 				<?php if ( $attributes['showFirstNameColumn'] ) : ?>
-					<th><?php esc_attr_e( 'First Name', 'am-miusage' ); ?></th>
+					<th><?php esc_attr_e( 'First Name', 'hasan-miusage' ); ?></th>
 				<?php endif; ?>
 				<?php if ( $attributes['showLastNameColumn'] ) : ?>
-					<th><?php esc_attr_e( 'Last Name', 'am-miusage' ); ?></th>
+					<th><?php esc_attr_e( 'Last Name', 'hasan-miusage' ); ?></th>
 				<?php endif; ?>
 				<?php if ( $attributes['showEmailColumn'] ) : ?>
-					<th><?php esc_attr_e( 'Email', 'am-miusage' ); ?></th>
+					<th><?php esc_attr_e( 'Email', 'hasan-miusage' ); ?></th>
 				<?php endif; ?>
 				<?php if ( $attributes['showDateColumn'] ) : ?>
-					<th><?php esc_attr_e( 'Date', 'am-miusage' ); ?></th>
+					<th><?php esc_attr_e( 'Date', 'hasan-miusage' ); ?></th>
 				<?php endif; ?>
 			</tr>
 		</thead>

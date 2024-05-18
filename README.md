@@ -1,6 +1,6 @@
-# AM Miusage
+# Hasan Miusage
 
-This "AM Miusage" plugin will allows you to run a CRUD operation inside the plugin page of admin panel of a WordPress website.
+This "Hasan Miusage" plugin will allows you to run a CRUD operation inside the plugin page of admin panel of a WordPress website.
 
 ## Installation
 
@@ -12,7 +12,7 @@ To install the plugin, follow these steps:
 
 ## Usage
 
-After activating the plugin, you can create events using the event post type. You can then view and manage these events in the WordPress admin area by navigating to "AM Miusage" under the "Events" menu in the admin sidebar or by visiting the URL `wp-admin/admin.php?page=am-miusage`.
+After activating the plugin, you can create events using the event post type. You can then view and manage these events in the WordPress admin area by navigating to "Hasan Miusage" under the "Events" menu in the admin sidebar or by visiting the URL `wp-admin/admin.php?page=hasan-miusage`.
 
 ## Configuration
 

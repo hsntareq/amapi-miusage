@@ -3,7 +3,7 @@
 	"apiVersion": 3,
 	"name": "create-block/amapi-block",
 	"version": "0.1.0",
-	"title": "AM Miusage Block",
+	"title": "Hasan Miusage Block",
 	"category": "widgets",
 	"icon": "table",
 	"description": "Example block scaffolded with Create Block tool.",
@@ -41,7 +41,7 @@
 			"default": true
 		}
 	},
-	"textdomain": "am-miusage",
+	"textdomain": "hasan-miusage",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css",

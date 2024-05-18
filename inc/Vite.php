@@ -7,7 +7,7 @@
  * @package AmApi
  */
 
-namespace AmMiusage;
+namespace HasanMiusage;
 
 /**
  * Class Vite
@@ -71,10 +71,10 @@ class Vite {
 	public function show_build_assets_notice() {
 		?>
 		<div class="notice notice-warning notice-alt is-dismissible">
-			<p><strong><?php esc_html_e( 'AM Miusage: ', 'am-miusage' ); ?> </strong>
-				<?php esc_html_e( 'Please ensure that the Vite assets are built before checking the production version of the AM API plugin. Run ', 'am-miusage' ); ?>
-				<code><?php esc_attr_e( 'npm run build', 'am-miusage' ); ?></code>
-				<?php esc_html_e( 'to build the assets.', 'am-miusage' ); ?>
+			<p><strong><?php esc_html_e( 'Hasan Miusage: ', 'hasan-miusage' ); ?> </strong>
+				<?php esc_html_e( 'Please ensure that the Vite assets are built before checking the production version of the AM API plugin. Run ', 'hasan-miusage' ); ?>
+				<code><?php esc_attr_e( 'npm run build', 'hasan-miusage' ); ?></code>
+				<?php esc_html_e( 'to build the assets.', 'hasan-miusage' ); ?>
 			</p>
 		</div>
 		<?php

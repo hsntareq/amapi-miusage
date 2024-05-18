@@ -5,7 +5,7 @@
  * @package wordress-plugin
  */
 
-namespace AmMiusage;
+namespace HasanMiusage;
 
 /**
  * Miusage_Api class.
@@ -96,7 +96,7 @@ class Miusage_Api {
 		$data = array(
 			'data'      => ! $is_ajax_allowed,
 			'remaining' => self::convert_to_hms( $miusage_data_timeout ),
-			'message'   => __( 'Data refresh will be possible once the countdown is complete.', 'am-miusage' ),
+			'message'   => __( 'Data refresh will be possible once the countdown is complete.', 'hasan-miusage' ),
 		);
 
 		wp_send_json_error( $data );
@@ -110,11 +110,11 @@ class Miusage_Api {
 	public function amapi_wp_cli_refresh_data() {
 
 		if ( true === $this->amapi_request_api() ) {
-			\WP_CLI::success( __( 'Miusage data refreshed successfully!', 'am-miusage' ) );
+			\WP_CLI::success( __( 'Miusage data refreshed successfully!', 'hasan-miusage' ) );
 			return null;
 		}
 
-		\WP_CLI::error( __( 'Failed to refresh data from server!', 'am-miusage' ) );
+		\WP_CLI::error( __( 'Failed to refresh data from server!', 'hasan-miusage' ) );
 		return null;
 	}
 
@@ -154,7 +154,7 @@ class Miusage_Api {
 		update_option( $this->amapi_option_key, $response ); // Update the option.
 		update_option( $this->amapi_option_date_key, gmdate( 'Y-m-d h:i:s', time() ) ); // Update the option.
 
-		$response['message'] = __( 'Data refreshed successfully!', 'am-miusage' ); // Add a message to the response.
+		$response['message'] = __( 'Data refreshed successfully!', 'hasan-miusage' ); // Add a message to the response.
 
 		if ( defined( 'WP_CLI' ) && WP_CLI ) {
 			return true;

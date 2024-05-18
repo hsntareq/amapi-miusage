@@ -5,7 +5,7 @@
  * @package wordpress-plugin
  */
 
-namespace AmMiusage;
+namespace HasanMiusage;
 
 /**
  * AM API Block Class
@@ -61,7 +61,7 @@ class AM_API_Block {
 
 		ob_start();
 		?>
-		<div class="am-miusage-block">
+		<div class="hasan-miusage-block">
 			<h2><?php echo esc_html( $api_data['title'] ); ?></h2>
 			<p><?php echo esc_html( $api_data['content'] ); ?></p>
 		</div>

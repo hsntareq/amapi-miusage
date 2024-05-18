@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<ruleset name="AM Miusage">
+<ruleset name="Hasan Miusage">
 	<description>My plugin coding standard.</description>
 	<rule ref="WordPress">
 		<exclude name="WordPress.Files.FileName"/>

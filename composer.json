@@ -1,12 +1,12 @@
 {
-	"name": "hasan/am-api",
+	"name": "hasan/hasan-miusage",
 	"description": "A WordPress event plugin to load api data.",
 	"type": "wordpress-plugin",
 	"license": "GPLv2",
 	"version": "1.0.0",
 	"autoload": {
 		"psr-4": {
-			"AmMiusage\\": "inc/"
+			"HasanMiusage\\": "inc/"
 		},
 		"files": [
 			"inc/helpers.php"
