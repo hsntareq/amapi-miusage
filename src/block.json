@@ -12,6 +12,10 @@
 		"html": false
 	},
 	"attributes": {
+		"blockTitle": {
+			"type": "boolean",
+			"default": false
+		},
 		"apiDataLoading": {
 			"type": "boolean",
 			"default": false

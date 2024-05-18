@@ -1,4 +1,4 @@
-=== Sample Plugin ===
+=== AM Miusage ===
 Contributors: hsntareq
 Donate link: http://donate-hsntareq.com/
 Tags: api, data, ajax

@@ -34,7 +34,6 @@ function handleRequestingData(amapiContent, event = false) {
 		});
 }
 
-
 const resposeTableHtml = (data) => {
 	let theadData = `<tr>${data.data.headers.map(header => `<th>${header}</th>`).join('')}</tr>`;
 	let tbodyData = Object.keys(data.data.rows).map(key => {

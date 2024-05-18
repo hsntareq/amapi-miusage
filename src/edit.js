@@ -4,9 +4,9 @@
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-i18n/
  */
 import { __ } from '@wordpress/i18n';
-import { addQueryArgs } from '@wordpress/url';
+
 import { useEffect, useState } from '@wordpress/element';
-import { PanelBody, ToggleControl, Button } from '@wordpress/components';
+import { PanelBody, ToggleControl } from '@wordpress/components';
 import { ajax_request } from './assets-src/js/lib';
 /**
  * React hook that is used to mark the block wrapper element.
@@ -36,6 +36,7 @@ export default function Edit({ attributes, setAttributes }) {
 	const [apiData, setApiData] = useState([]);
 
 	const {
+		blockTitle,
 		showIdColumn,
 		showFirstNameColumn,
 		showLastNameColumn,
@@ -53,8 +54,8 @@ export default function Edit({ attributes, setAttributes }) {
 		}
 	};
 
-	const handleToggleChange = (column) => {
-		setAttributes({ [column]: !attributes[column] });
+	const handleToggleChange = (attr) => {
+		setAttributes({ [attr]: !attributes[attr] });
 	};
 
 	const renderTable = () => {
@@ -100,6 +101,11 @@ export default function Edit({ attributes, setAttributes }) {
 			<InspectorControls>
 				<PanelBody title={__('Table Columns', 'amapi')} initialOpen={true}>
 					<ToggleControl
+						label="Show Block Title"
+						checked={blockTitle}
+						onChange={() => handleToggleChange('blockTitle')}
+					/>
+					<ToggleControl
 						label="ID"
 						checked={showIdColumn}
 						onChange={() => handleToggleChange('showIdColumn')}
@@ -126,8 +132,9 @@ export default function Edit({ attributes, setAttributes }) {
 					/>
 				</PanelBody>
 			</InspectorControls>
+
 			<div id="amapi-page-content">
-				<h3 className="amapi-table-title">This amazing table</h3>
+				{blockTitle && <h3 className="amapi-table-title">This amazing table</h3>}
 
 				{(!apiData || apiData.length === 0) && <div className='loading-image'> <img src={`${amapi_data.loading}`} alt="loading" /> </div>}
 

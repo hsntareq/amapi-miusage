@@ -16,7 +16,7 @@ $table_data  = $api_data['data']['rows'];
 
 ?>
 <div <?php echo wp_kses_data( get_block_wrapper_attributes() ); ?>>
-	<h3><?php echo esc_attr( $table_title ); ?></h3>
+	<h3 class="amapi-table-title"><?php echo esc_attr( $table_title ); ?></h3>
 
 	<table>
 		<thead>

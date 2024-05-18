@@ -119,41 +119,73 @@ class Miusage_Api {
 	}
 
 	/**
+	 * Request the API.
+	 *
+	 * @param bool $activate Activate the API.
+	 *
+	 * @return bool|void
+	 */
+	public function amapi_request_api_activate( $activate = true ) {
+		error_log( 'Trying to log' );
+		if ( ! $activate ) {
+			return;
+		}
+		error_log( 'Trying to log after' );
+
+		try {
+			$this->amapi_request_api();
+		} catch ( \Throwable $th ) {
+			// throw $th; //.
+			error_log( $th->getMessage() );
+
+			// \WP_Error( 'error', $th->getMessage() );
+		}
+	}
+
+	/**
 	 * Refresh the data.
 	 *
 	 * @return bool|void
 	 */
 	private function amapi_request_api() {
 
-		$response = wp_remote_get( 'https://miusage.com/v1/challenge/1/' );
+		try {
 
-		// Return if there is an error.
-		if ( is_wp_error( $response ) ) {
-			wp_send_json_error( $response->get_error_message() ); // Return the error message.
+			$response = wp_remote_get( 'https://miusage.com/v1/challenge/1/' );
+
+			// Return if there is an error.
+			if ( is_wp_error( $response ) ) {
+				wp_send_json_error( $response->get_error_message() ); // Return the error message.
+			}
+
+			$response = json_decode( wp_remote_retrieve_body( $response ), __return_true() ); // Decode the response.
+
+			// Update the date format.
+			foreach ( $response['data']['rows'] as &$row ) {
+				$row['date'] = gmdate( 'Y-m-d h:i:s', $row['date'] ); // Update the date format.
+			}
+
+			set_transient( $this->transient_timeout, __return_true(), HOUR_IN_SECONDS ); // Set the transient.
+
+			update_option( $this->amapi_option_key, $response ); // Update the option.
+			update_option( $this->amapi_option_date_key, gmdate( 'Y-m-d h:i:s', time() ) ); // Update the option.
+
+			$response['message'] = __( 'Data refreshed successfully!', 'am-miusage' ); // Add a message to the response.
+
+			if ( defined( 'WP_CLI' ) && WP_CLI ) {
+				return true;
+			}
+			error_log( $response );
+
+			$miusage_data_timeout  = get_option( '_transient_timeout_' . $this->transient_timeout );
+			$response['remaining'] = self::convert_to_hms( $miusage_data_timeout );
+
+			wp_send_json_success( $response ); // Return the response.
+			// $response = wp_remote_get( 'https://miusage.com/v1/challenge/1/' );.
+		} catch ( \Throwable $th ) {
+			// throw $th; //.
+			WP_Error( 'error', $th->getMessage() );
 		}
-
-		$response = json_decode( wp_remote_retrieve_body( $response ), __return_true() ); // Decode the response.
-
-		// Update the date format.
-		foreach ( $response['data']['rows'] as &$row ) {
-			$row['date'] = gmdate( 'Y-m-d h:i:s', $row['date'] ); // Update the date format.
-		}
-
-		set_transient( $this->transient_timeout, __return_true(), HOUR_IN_SECONDS ); // Set the transient.
-
-		update_option( $this->amapi_option_key, $response ); // Update the option.
-		update_option( $this->amapi_option_date_key, gmdate( 'Y-m-d h:i:s', time() ) ); // Update the option.
-
-		$response['message'] = __( 'Data refreshed successfully!', 'am-miusage' ); // Add a message to the response.
-
-		if ( defined( 'WP_CLI' ) && WP_CLI ) {
-			return true;
-		}
-
-		$miusage_data_timeout  = get_option( '_transient_timeout_' . $this->transient_timeout );
-		$response['remaining'] = self::convert_to_hms( $miusage_data_timeout );
-
-		wp_send_json_success( $response ); // Return the response.
 	}
 
 }
