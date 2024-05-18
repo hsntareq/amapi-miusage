@@ -5,8 +5,8 @@
 	"version": "0.1.0",
 	"title": "Hasan Miusage Block",
 	"category": "widgets",
-	"icon": "table",
-	"description": "Example block scaffolded with Create Block tool.",
+	"icon": "editor-table",
+	"description": "This block, created by Hasan, utilizes API data saved in a table from miusage.com.",
 	"example": {},
 	"supports": {
 		"html": false

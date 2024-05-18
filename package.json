@@ -5,13 +5,13 @@
 	"main": "vite.config.js",
 	"scripts": {
 		"vdev": "vite --input-type=module",
-		"wpbuild": "wp-scripts build",
+		"wpbuild": "wp-scripts build --output-path=assets/block",
 		"wpstart": "wp-scripts start --output-path=assets/block",
 		"dev": "concurrently \"vite\" \" npm run wpstart\" && npm run build",
-		"build": "vite build && npm run wpbuild echo '\n Vite build done!'",
+		"build": "concurrently \"vite build\" \" npm run wpbuild\"",
 		"dev-build": "vite build",
 		"preview": "vite preview",
-		"zip": "vite build && node bundle.mjs",
+		"zip": "npm run build && node bundle.mjs",
 		"zip-full": "vite build && node bundle-full.mjs"
 	},
 	"devDependencies": {

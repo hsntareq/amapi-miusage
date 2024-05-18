@@ -99,7 +99,7 @@ export default function Edit({ attributes, setAttributes }) {
 	return (
 		<div {...useBlockProps()}>
 			<InspectorControls>
-				<PanelBody title={__('Table Columns', 'amapi')} initialOpen={true}>
+				<PanelBody title={__('Hasan Misuage Options', 'amapi')} initialOpen={true}>
 					<ToggleControl
 						label="Show Block Title"
 						checked={blockTitle}

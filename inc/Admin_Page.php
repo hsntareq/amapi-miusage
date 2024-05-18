@@ -61,7 +61,7 @@ class Admin_Page {
 	 * @return void
 	 */
 	public function add_admin_menu() {
-		add_menu_page( __( 'Hasan Miusage' ), __( 'Hasan Miusage' ), 'manage_options', 'hasan-miusage', array( $this, 'admin_page' ), 'dashicons-database', 10 );
+		add_menu_page( __( 'Hasan Miusage' ), __( 'Hasan Miusage' ), 'manage_options', 'hasan-miusage', array( $this, 'admin_page' ), 'dashicons-editor-table', 10 );
 	}
 
 	/**
@@ -74,8 +74,8 @@ class Admin_Page {
 		$miusage_option_data  = get_option( 'hasan_miusage_data' );
 		$table_title          = $miusage_option_data ? $miusage_option_data['title'] : '';
 		$table_time           = get_option( 'hasan_miusage_date' );
-		$headers              = $miusage_option_data['data']['headers'];
-		$rows                 = $miusage_option_data['data']['rows'];
+		$headers              = $miusage_option_data ? $miusage_option_data['data']['headers'] : array();
+		$rows                 = $miusage_option_data ? $miusage_option_data['data']['rows'] : array();
 		$transient_timestamp  = get_transient( 'timeout_amapi_data_loaded' );
 		$available_time       = ( false === $transient_timestamp ) ? 'false' : 'true';
 		$transient_timestamp  = ( $transient_timestamp - time() ) < 0 ? 0 : $transient_timestamp;
