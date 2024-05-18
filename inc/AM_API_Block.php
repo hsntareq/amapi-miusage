@@ -69,47 +69,4 @@ class AM_API_Block {
 		return ob_get_clean();
 	}
 
-
-	/**
-	 * Register the scripts.
-	 */
-	public function register_scripts() {
-		// Register the editor script.
-		wp_register_script(
-			'am-miusage-block-editor',
-			esc_url( AM_API_PLUGIN_URL . 'assets/dist/block-editor.js' ),
-			array( 'wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-i18n' ),
-			AM_API_PLUGIN_VERSION,
-			true
-		);
-
-		// Register the block script.
-		wp_register_script(
-			'am-miusage-block',
-			esc_url( AM_API_PLUGIN_URL . 'assets/dist/block.js' ),
-			array( 'wp-blocks', 'wp-element', 'wp-components', 'wp-i18n' ),
-			AM_API_PLUGIN_VERSION,
-			true
-		);
-
-		// Register the editor style.
-		wp_register_style(
-			'am-miusage-block-editor',
-			esc_url( AM_API_PLUGIN_URL . 'assets/dist/block-editor.css' ),
-			array( 'wp-edit-blocks' ),
-			AM_API_PLUGIN_VERSION
-		);
-
-		// Register the block style.
-		wp_register_style(
-			'am-miusage-block',
-			esc_url( AM_API_PLUGIN_URL . 'assets/dist/block.css' ),
-			array(),
-			AM_API_PLUGIN_VERSION
-		);
-
-	}
-
-
-
 }

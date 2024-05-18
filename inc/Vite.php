@@ -1,6 +1,6 @@
 <?php
 /**
- * Vite class.
+ * Vite class file.
  *
  * This class helps integrate Vite assets into your WordPress plugin.
  *
@@ -8,8 +8,6 @@
  */
 
 namespace AmMiusage;
-
-use WpdbCrud\Singleton;
 
 /**
  * Class Vite
@@ -115,7 +113,6 @@ class Vite {
 		}
 		return false;
 	}
-
 
 	/**
 	 * Enqueue development assets from Vite dev server.

@@ -1,5 +1,5 @@
 {
-	"name": "hasan/am-miusage",
+	"name": "hasan/am-api",
 	"description": "A WordPress event plugin to load api data.",
 	"type": "wordpress-plugin",
 	"license": "GPLv2",

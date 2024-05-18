@@ -70,11 +70,12 @@ class Admin_Page {
 	 * @return void
 	 */
 	public function admin_page() {
+		// Get the data from the options table and set variables for view.
 		$miusage_option_data  = get_option( 'amapi_miusage_data' );
-		$table_title          = sanitize_text_field( $miusage_option_data ? $miusage_option_data['title'] : '' );
-		$table_time           = sanitize_text_field( get_option( 'amapi_miusage_date' ) );
-		$headers              = sanitize_text_field( $miusage_option_data['data']['headers'] );
-		$rows                 = sanitize_text_field( $miusage_option_data['data']['rows'] );
+		$table_title          = $miusage_option_data ? $miusage_option_data['title'] : '';
+		$table_time           = get_option( 'amapi_miusage_date' );
+		$headers              = $miusage_option_data['data']['headers'];
+		$rows                 = $miusage_option_data['data']['rows'];
 		$transient_timestamp  = get_transient( 'timeout_amapi_data_loaded' );
 		$available_time       = ( false === $transient_timestamp ) ? 'false' : 'true';
 		$transient_timestamp  = ( $transient_timestamp - time() ) < 0 ? 0 : $transient_timestamp;
@@ -82,14 +83,7 @@ class Admin_Page {
 		$is_ajax_allowed      = (bool) get_transient( $transient_timeout );
 		$miusage_data_timeout = get_option( '_transient_timeout_' . $transient_timeout );
 
-		if ( $miusage_option_data ) {
-			$table_title = sanitize_text_field( $miusage_option_data['title'] );
-			$table_time  = sanitize_text_field( get_option( 'amapi_miusage_date' ) );
-			$headers     = sanitize_text_field( $miusage_option_data['data']['headers'] );
-			$rows        = sanitize_text_field( $miusage_option_data['data']['rows'] );
-		}
-
+		// Render the admin page view.
 		self::render( 'awesome-table', compact( 'miusage_option_data', 'table_title', 'headers', 'rows' ) );
-
 	}
 }
