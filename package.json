@@ -5,12 +5,14 @@
 	"main": "vite.config.js",
 	"scripts": {
 		"vdev": "vite --input-type=module",
+		"wpbuild": "wp-scripts build",
 		"wpstart": "wp-scripts start --output-path=assets/block",
 		"dev": "concurrently \"vite\" \" npm run wpstart\" && npm run build",
-		"build": "vite build && echo '\n Vite build done!'",
+		"build": "vite build && npm run wpbuild echo '\n Vite build done!'",
 		"dev-build": "vite build",
 		"preview": "vite preview",
-		"zip": "vite build && node bundle.mjs"
+		"zip": "vite build && node bundle.mjs",
+		"zip-full": "vite build && node bundle-full.mjs"
 	},
 	"devDependencies": {
 		"@wordpress/scripts": "^27.8.0",
