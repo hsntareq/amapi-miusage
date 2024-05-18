@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Hasan Miusage
- * Plugin URI: https://www.hasan-miusage.com
+ * Plugin URI: https://dev-hsntareq.pantheonsite.io/
  * Version: 1.0.0
  * Author: Hasan Tareq
  * Author URI: https://github.com/hsntareq
