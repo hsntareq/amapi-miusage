@@ -6,10 +6,6 @@
  * @since   1.0.0
  */
 
-$transient_timestamp = get_transient( 'timeout_amapi_data_loaded' );
-$available_time      = ( false === $transient_timestamp ) ? 'false' : 'true';
-$transient_timestamp = ( $transient_timestamp - time() ) < 0 ? 0 : $transient_timestamp;
-
 ?>
 <div class="amapi-admin-page" id="amapi-admin-page">
 	<div id="amapi-page-header" style="display:flex;align-items:center;justify-content:space-between">
@@ -23,7 +19,7 @@ $transient_timestamp = ( $transient_timestamp - time() ) < 0 ? 0 : $transient_ti
 			<div class="amapi-page-title"
 				style="width:100%;display:flex;align-items:center;justify-content:space-between;">
 				<div>
-				<?php esc_attr_e( 'API Data Retrieval from ', 'am-miusage' ); ?> <a href="<?php echo esc_url( 'https://miusage.com/v1/challenge/1/' ); ?>" target="_blank" class="tab-nav"> <?php esc_attr_e( 'miusage.com', 'am-miusage' ); ?> </a>
+				<?php esc_attr_e( 'API Data Retrieval from ', 'am-miusage' ); ?> <a href="<?php echo esc_url( 'https://miusage.com/v1/challenge/1/' ); ?>" target="_blank" class="tab-nav"> <?php echo esc_attr( 'miusage.com' ); ?> </a>
 				</div>
 				<div id="refresh_button_parent" style="display:flex;align-items:center;gap:10px;">
 					<div id="inline_notice"></div>
@@ -39,17 +35,6 @@ $transient_timestamp = ( $transient_timestamp - time() ) < 0 ? 0 : $transient_ti
 			</div>
 		</div>
 		<?php
-
-		$transient_timeout    = 'amapi_timeout_by';
-		$is_ajax_allowed      = (bool) get_transient( $transient_timeout );
-		$miusage_data_timeout = get_option( '_transient_timeout_' . $transient_timeout );
-		$miusage_option_data  = get_option( 'amapi_miusage_data' );
-
-		$table_title = $miusage_option_data['title'];
-		$table_time  = get_option( 'amapi_miusage_date' );
-		$headers     = $miusage_option_data['data']['headers'];
-		$rows        = $miusage_option_data['data']['rows'];
-
 		if ( ! empty( $miusage_option_data ) ) {
 			?>
 			<div id="amapi-page-content">
@@ -89,5 +74,4 @@ $transient_timestamp = ( $transient_timestamp - time() ) < 0 ? 0 : $transient_ti
 		}
 		?>
 	</div>
-	<div id="amapi-toast-wrap"></div>
 </div>

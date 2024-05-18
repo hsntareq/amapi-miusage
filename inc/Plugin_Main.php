@@ -85,7 +85,6 @@ final class Plugin_Main {
 	 */
 	public function plugin_activation() {
 
-		error_log( get_option( 'amapi_plugin_installed' ) );
 		if ( false === get_option( 'amapi_plugin_installed' ) ) {
 			\AmMiusage\Miusage_Api::get_instance()->amapi_request_api_activate( true );
 		}

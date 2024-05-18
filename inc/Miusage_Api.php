@@ -126,19 +126,14 @@ class Miusage_Api {
 	 * @return bool|void
 	 */
 	public function amapi_request_api_activate( $activate = true ) {
-		error_log( 'Trying to log' );
 		if ( ! $activate ) {
 			return;
 		}
-		error_log( 'Trying to log after' );
 
 		try {
 			$this->amapi_request_api();
 		} catch ( \Throwable $th ) {
-			// throw $th; //.
-			error_log( $th->getMessage() );
-
-			// \WP_Error( 'error', $th->getMessage() );
+			\WP_Error( 'error', $th->getMessage() );
 		}
 	}
 
@@ -175,16 +170,13 @@ class Miusage_Api {
 			if ( defined( 'WP_CLI' ) && WP_CLI ) {
 				return true;
 			}
-			error_log( $response );
 
 			$miusage_data_timeout  = get_option( '_transient_timeout_' . $this->transient_timeout );
 			$response['remaining'] = self::convert_to_hms( $miusage_data_timeout );
 
 			wp_send_json_success( $response ); // Return the response.
-			// $response = wp_remote_get( 'https://miusage.com/v1/challenge/1/' );.
 		} catch ( \Throwable $th ) {
-			// throw $th; //.
-			WP_Error( 'error', $th->getMessage() );
+			\WP_Error( 'error', $th->getMessage() );
 		}
 	}
 

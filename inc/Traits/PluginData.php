@@ -8,7 +8,6 @@
 namespace AmMiusage\Traits;
 
 trait PluginData {
-
 	/**
 	 * Get the plugin version.
 	 *

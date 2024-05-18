@@ -8,7 +8,6 @@
 namespace AmMiusage\Traits;
 
 trait Render {
-
 	/**
 	 * Path to the views directory.
 	 *
