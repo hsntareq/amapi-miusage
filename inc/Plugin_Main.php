@@ -44,6 +44,7 @@ final class Plugin_Main {
 		Admin_Page::get_instance();
 		AM_API_Block::get_instance();
 	}
+
 	/**
 	 * Register hooks and do other setup tasks.
 	 */
@@ -53,7 +54,6 @@ final class Plugin_Main {
 
 		add_action( 'plugins_loaded', array( $this, 'init_plugin' ) );
 	}
-
 
 	/**
 	 * Function to define all constants.
@@ -86,10 +86,11 @@ final class Plugin_Main {
 	public function plugin_activation() {
 
 		if ( false === get_option( 'amapi_plugin_installed' ) ) {
-			\AmMiusage\Miusage_Api::get_instance()->amapi_request_api_activate( true );
+			// Add option data to the database.
+			\AmMiusage\Miusage_Api::get_instance()->amapi_request_api_activate();
 		}
 
-		$installed = get_option( 'amapi_plugin_installed' );
+		$installed = get_option( 'amapi_plugin_installed' ); // check if the plugin is already installed.
 
 		if ( ! $installed ) {
 			update_option( 'amapi_plugin_installed', time() );
@@ -101,7 +102,7 @@ final class Plugin_Main {
 	 * Run code when the plugin is activated
 	 */
 	public function plugin_deactivation() {
-
+		// Clear any option or temp data.
 		delete_option( 'amapi_miusage_date' );
 		delete_option( 'amapi_miusage_data' );
 		delete_option( 'amapi_plugin_installed' );

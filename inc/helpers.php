@@ -5,24 +5,6 @@
  * @package wordpress-plugin
  */
 
-if ( ! function_exists( 'amapi' ) ) {
-	/**
-	 * Get plugin info.
-	 *
-	 * @return object
-	 */
-	function amapi() {
-		$info = array(
-			'name'  => 'AM Miusage',
-			'nonce' => wp_create_nonce( 'amapi-nonce' ),
-		);
-		return (object) $info;
-
-	}
-}
-
-
-
 // Debug pring function.
 if ( ! function_exists( 'pr' ) ) {
 	/**
