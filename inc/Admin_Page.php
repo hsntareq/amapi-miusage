@@ -71,9 +71,9 @@ class Admin_Page {
 	 */
 	public function admin_page() {
 		// Get the data from the options table and set variables for view.
-		$miusage_option_data  = get_option( 'amapi_miusage_data' );
+		$miusage_option_data  = get_option( 'hasan_miusage_data' );
 		$table_title          = $miusage_option_data ? $miusage_option_data['title'] : '';
-		$table_time           = get_option( 'amapi_miusage_date' );
+		$table_time           = get_option( 'hasan_miusage_date' );
 		$headers              = $miusage_option_data['data']['headers'];
 		$rows                 = $miusage_option_data['data']['rows'];
 		$transient_timestamp  = get_transient( 'timeout_amapi_data_loaded' );

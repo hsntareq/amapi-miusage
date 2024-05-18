@@ -103,8 +103,8 @@ final class Plugin_Main {
 	 */
 	public function plugin_deactivation() {
 		// Clear any option or temp data.
-		delete_option( 'amapi_miusage_date' );
-		delete_option( 'amapi_miusage_data' );
+		delete_option( 'hasan_miusage_date' );
+		delete_option( 'hasan_miusage_data' );
 		delete_option( 'amapi_plugin_installed' );
 		delete_option( 'amapi_plugin_version' );
 	}

@@ -9,7 +9,7 @@
  * @package wordpress-plugin
  */
 
-$api_data = get_option( 'amapi_miusage_data' );
+$api_data = get_option( 'hasan_miusage_data' );
 
 $table_title = $api_data['title'];
 $table_data  = $api_data['data']['rows'];

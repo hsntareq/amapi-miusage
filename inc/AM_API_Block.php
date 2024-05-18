@@ -53,7 +53,7 @@ class AM_API_Block {
 	 * @return string
 	 */
 	public function render_block( $attributes ) {
-		$api_data = get_option( 'amapi_miusage_data' );
+		$api_data = get_option( 'hasan_miusage_data' );
 
 		if ( ! $api_data ) {
 			return '';

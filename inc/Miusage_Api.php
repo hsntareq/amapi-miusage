@@ -18,14 +18,14 @@ class Miusage_Api {
 	 *
 	 * @var string
 	 */
-	private $amapi_option_key = 'amapi_miusage_data';
+	private $amapi_option_key = 'hasan_miusage_data';
 
 	/**
 	 * Miusage post date key.
 	 *
 	 * @var string
 	 */
-	private $amapi_option_date_key = 'amapi_miusage_date';
+	private $amapi_option_date_key = 'hasan_miusage_date';
 
 	/**
 	 * Transient timeout key.
