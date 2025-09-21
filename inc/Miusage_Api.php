@@ -5,13 +5,15 @@
  * @package wordress-plugin
  */
 
+
 namespace HasanMiusage;
 
 /**
  * Miusage_Api class.
  */
 class Miusage_Api {
-	use Traits\Singleton, Traits\PluginData; // Use the Singleton and PluginData trait.
+	use Traits\Singleton;
+	use Traits\PluginData; // Use the Singleton and PluginData trait.
 
 	/**
 	 * Miusage reset key.
@@ -53,7 +55,6 @@ class Miusage_Api {
 		if ( defined( 'WP_CLI' ) && WP_CLI ) {
 			\WP_CLI::add_command( 'amapi refresh', array( $this, 'amapi_wp_cli_refresh_data' ) );
 		}
-
 	}
 
 	/**
@@ -69,7 +70,6 @@ class Miusage_Api {
 		}
 
 		wp_send_json_success( $api_data );
-
 	}
 
 	/**
@@ -110,11 +110,15 @@ class Miusage_Api {
 	public function amapi_wp_cli_refresh_data() {
 
 		if ( true === $this->amapi_request_api() ) {
-			\WP_CLI::success( __( 'Miusage data refreshed successfully!', 'hasan-miusage' ) );
+			if ( class_exists( '\WP_CLI' ) ) {
+				\WP_CLI::success( __( 'Miusage data refreshed successfully!', 'hasan-miusage' ) );
+			}
 			return null;
 		}
 
-		\WP_CLI::error( __( 'Failed to refresh data from server!', 'hasan-miusage' ) );
+		if ( class_exists( '\WP_CLI' ) ) {
+			\WP_CLI::error( __( 'Failed to refresh data from server!', 'hasan-miusage' ) );
+		}
 		return null;
 	}
 
@@ -167,5 +171,4 @@ class Miusage_Api {
 			wp_send_json_success( $response ); // Return the response.
 		}
 	}
-
 }
