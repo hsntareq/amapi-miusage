@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 // vite.config.js
 export default defineConfig({
 	server: {
+		cors: true, // Allow all origins for dev.
 		port: 3030,
 	},
 	build: {
