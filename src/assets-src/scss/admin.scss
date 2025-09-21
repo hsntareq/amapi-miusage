@@ -1,4 +1,4 @@
-@import '../../mixins.scss';
+@use '../../mixins.scss' as *;
 
 #wpcontent {
 	padding-left: 0 !important;
