@@ -4,16 +4,19 @@
  *
  * This class helps integrate Vite assets into your WordPress plugin.
  *
- * @package AmApi
+ * @package wordpress-plugin
  */
 
 namespace HasanMiusage;
 
 /**
  * Class Vite
+ *
+ * @package wordpress-plugin
  */
 class Vite {
-	use Traits\Singleton, Traits\PluginData; // Use the Singleton and PluginData trait.
+	use Traits\Singleton;
+	use Traits\PluginData;
 
 	/**
 	 * Path to the manifest.json file.

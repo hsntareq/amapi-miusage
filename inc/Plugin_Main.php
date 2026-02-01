@@ -15,9 +15,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * Plugin_Main Class
+ *
+ * @package wordpress-plugin
  */
 final class Plugin_Main {
-	use Traits\Singleton, Traits\PluginData; // Use the Singleton and PluginData trait.
+	use Traits\Singleton;
+	use Traits\PluginData;
 
 	/**
 	 * Class constructor (private to enforce singleton pattern).

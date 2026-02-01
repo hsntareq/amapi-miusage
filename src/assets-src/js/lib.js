@@ -1,9 +1,7 @@
 /**
  * This file contains the helper functions that are used throughout the plugin.
  */
-
-
-
+const ajaxLoader = document.getElementById('ajax_loader');
 /**
  * Function to display an inline message on the screen.
  *

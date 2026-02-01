@@ -9,6 +9,8 @@ namespace HasanMiusage;
 
 /**
  * AM API Block Class
+ *
+ * @package wordpress-plugin
  */
 class AM_API_Block {
 	use Traits\Singleton, Traits\PluginData; // Use the Singleton and PluginData trait.
@@ -49,10 +51,9 @@ class AM_API_Block {
 	/**
 	 * Render the block.
 	 *
-	 * @param array $attributes Block attributes.
 	 * @return string
 	 */
-	public function render_block( $attributes ) {
+	public function render_block() {
 		$api_data = get_option( 'hasan_miusage_data' );
 
 		if ( ! $api_data ) {

@@ -1,15 +1,17 @@
 <?php
+// phpcs:ignore WordPress.Files.FileName.InvalidClassFileName WordPress.Files.FileName.NotHyphenatedLowercase
 /**
- * Miusage_Api class.
+ * Miusage API class file.
  *
- * @package wordress-plugin
+ * @package wordpress-plugin
  */
-
 
 namespace HasanMiusage;
 
 /**
  * Miusage_Api class.
+ *
+ * @package wordpress-plugin
  */
 class Miusage_Api {
 	use Traits\Singleton;
@@ -37,7 +39,7 @@ class Miusage_Api {
 	private $transient_timeout = 'amapi_timeout_by';
 
 	/**
-	 * Miusage_Api constructor.
+	 * Constructs the Miusage_Api instance.
 	 */
 	public function __construct() {
 		$this->init();
@@ -52,7 +54,7 @@ class Miusage_Api {
 		add_action( 'wp_ajax_amapi_retrive_data', array( $this, 'amapi_retrive_data' ) );
 		add_action( 'wp_ajax_nopriv_amapi_retrive_data', array( $this, 'amapi_retrive_data' ) );
 
-		if ( defined( 'WP_CLI' ) && WP_CLI ) {
+		if ( defined( '\WP_CLI' ) && \WP_CLI ) {
 			\WP_CLI::add_command( 'amapi refresh', array( $this, 'amapi_wp_cli_refresh_data' ) );
 		}
 	}
@@ -96,7 +98,7 @@ class Miusage_Api {
 		$data = array(
 			'data'      => ! $is_ajax_allowed,
 			'remaining' => self::convert_to_hms( $miusage_data_timeout ),
-			'message'   => __( 'Data refresh will be possible once the countdown is complete.', 'hasan-miusage' ),
+			'message'   => __( 'Data refresh will be possible once the countdown is complete. Only wp-cli command will work.', 'hasan-miusage' ),
 		);
 
 		wp_send_json_error( $data );
@@ -160,7 +162,7 @@ class Miusage_Api {
 
 		$response['message'] = __( 'Data refreshed successfully!', 'hasan-miusage' ); // Add a message to the response.
 
-		if ( defined( 'WP_CLI' ) && WP_CLI ) {
+		if ( defined( 'WP_CLI' ) && \WP_CLI ) {
 			return true;
 		}
 
