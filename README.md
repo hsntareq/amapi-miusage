@@ -19,13 +19,77 @@ To install the plugin, follow these steps:
 2. Upload & install the plugin
 3. Activate the plugin through the 'Plugins' menu in WordPress.
 
+## Requirements
+
+- WordPress 5.0 or higher (for Gutenberg block support)
+- PHP 7.0 or higher
+- WP-CLI (optional, for command-line data synchronization)
+
 ## Usage
 
 After activating the plugin, you can create events using the event post type. You can then view and manage these events in the WordPress admin area by navigating to "Hasan Miusage" under the "Events" menu in the admin sidebar or by visiting the URL `wp-admin/admin.php?page=hasan-miusage`.
 
+### Gutenberg Block Usage
+
+1. Edit any post or page in the WordPress editor
+2. Click the plus button and search for "Hasan Miusage" block
+3. Add the block to display challenge data
+4. The block will automatically display the latest fetched challenge information
+
+### WP-CLI Commands
+
+Trigger manual data synchronization using WP-CLI:
+
+```bash
+wp miusage sync
+```
+
+This command fetches the latest challenge data from the Miusage API and updates your WordPress site immediately.
+
 ## Configuration
 
-The plugin provides a settings page where you can configure various options, such as the number of related posts to display and the order in which they should be shown.
+The plugin provides a settings page where you can configure various options:
+
+- **Sync Interval**: Set the automatic synchronization frequency (default: hourly)
+- **Display Options**: Configure which challenge data fields to display
+- **Related Posts**: Set the number of related posts to display and order
+- **API Settings**: Configure Miusage API endpoint and authentication if needed
+
+Access configuration at **WordPress Admin > Hasan Miusage > Settings**
+
+## Features in Detail
+
+### Automated Hourly Sync
+
+The plugin uses WordPress scheduling (wp_cron) to fetch challenge data every hour automatically. No manual intervention needed.
+
+### Gutenberg Block Integration
+
+Display challenge data anywhere on your site using the custom Gutenberg block with full flexibility in post/page layouts.
+
+### Data Management
+
+- Create, read, update, and delete challenge records
+- Bulk operations for managing multiple records
+- Search and filter functionality for easy navigation
+
+## Troubleshooting
+
+### Data Not Updating
+
+- Check WordPress cron is enabled: `wp cron test`
+- Verify API endpoint is accessible: `wp miusage sync --dry-run`
+- Check error logs in WordPress admin
+
+### Block Not Appearing
+
+- Ensure WordPress 5.0+ is installed
+- Clear browser cache and reload the editor
+- Deactivate and reactivate the plugin
+
+## Version
+
+1.0.0
 
 ## Stable Tag
 
@@ -34,6 +98,25 @@ The plugin provides a settings page where you can configure various options, suc
 ## License
 
 This plugin is released under the GNU General Public License v2 or later. See the [GPLv2 or later](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html) file for details.
+
+## Author
+
+Hasan Tareq
+
+## Contributing
+
+We welcome contributions! Please feel free to submit pull requests or open issues for bug reports and feature requests.
+
+## Changelog
+
+### Version 1.0.0
+
+- Initial release
+- Automated hourly data retrieval from Miusage API
+- WP-CLI integration for manual synchronization
+- Gutenberg block for displaying challenge data
+- Full CRUD admin interface
+- Flexible configuration options
 
 ## Support
 
