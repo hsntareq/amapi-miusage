@@ -6,6 +6,7 @@ This "Hasan Miusage" plugin allows you to seamlessly integrate challenge data fr
 
 - **Automated Data Retrieval**: Automatically fetches challenge data from <https://miusage.com/v1/challenge/1/> every hour
 - **WP-CLI Integration**: Support for wp-cli commands to trigger manual data updates and synchronization
+- **Gutenberg Block**: Custom Gutenberg block to display fetched challenge data directly on your posts and pages
 - **Admin Dashboard**: Full CRUD operations accessible through a dedicated admin page under "Hasan Miusage"
 - **Data Management**: Easy-to-use interface for viewing, creating, updating, and deleting challenge records
 - **Flexible Configuration**: Customizable settings to fine-tune the plugin behavior and data handling
