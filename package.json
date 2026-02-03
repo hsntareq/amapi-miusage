@@ -1,12 +1,16 @@
 {
   "name": "hasan-miusage",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "vite.config.js",
   "scripts": {
-    "dev": "(bun install || npm install) && composer dump-autoload && npx vite",
+    "dev": "(bun install || npm install) && composer dump-autoload && concurrently \"npm run wp-start\" \"vite\"",
+    "wp-start": "wp-scripts start --output-path=assets/block",
+    "wp-build": "wp-scripts build --output-path=assets/block",
     "build": "vite build",
     "preview": "vite preview",
+    "lint": "eslint src/",
+    "lint:fix": "eslint src/ --fix",
     "zip": "npm run build && node bundle.mjs",
     "zip-full": "vite build && node bundle-full.mjs"
   },
@@ -14,6 +18,7 @@
     "@wordpress/scripts": "^30.24.0",
     "concurrently": "^9.2.1",
     "dir-archiver": "^2.1.0",
+    "eslint": "^8.57.1",
     "sass": "^1.93.0",
     "vite": "^7.1.6",
     "vite-plugin-zip-pack": "^1.2.4"

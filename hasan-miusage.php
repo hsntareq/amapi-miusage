@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Hasan Miusage
  * Plugin URI: https://dev-hsntareq.pantheonsite.io/
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: Hasan Tareq
  * Author URI: https://github.com/hsntareq
  * License: GPLv2 or later
@@ -12,7 +12,7 @@
  * Requires at least: 5.8
  * Requires PHP: 7.0
  * Tested up to: 5.8
- * Stable tag: 1.0.0
+ * Stable tag: 1.0.1
  *
  * @package wordpress-plugin
  * @since 1.0.0

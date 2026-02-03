@@ -5,8 +5,8 @@
  */
 import { __ } from '@wordpress/i18n';
 
-import { useEffect, useState } from '@wordpress/element';
 import { PanelBody, ToggleControl } from '@wordpress/components';
+import { useEffect, useState } from '@wordpress/element';
 import { ajax_request } from './assets-src/js/lib';
 /**
  * React hook that is used to mark the block wrapper element.
@@ -64,7 +64,7 @@ export default function Edit({ attributes, setAttributes }) {
 				<table>
 					<thead>
 						<tr>
-							{showIdColumn && <th>{__('ID', 'amapi')}</th>}
+							{showIdColumn && <th>{__('IDs', 'amapi')}</th>}
 							{showFirstNameColumn && <th>{__('First Name', 'amapi')}</th>}
 							{showLastNameColumn && <th>{__('Last Name', 'amapi')}</th>}
 							{showEmailColumn && <th>{__('Email', 'amapi')}</th>}

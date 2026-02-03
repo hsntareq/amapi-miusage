@@ -26,18 +26,18 @@ class Vite {
 	private $manifest_path;
 
 	/**
-	 * Vite development server URL (if available).
+	 * Vite development server URL.
 	 *
-	 * @var string|null
+	 * @var string
 	 */
-	private $dev_server_url;
+	private $dev_server = 'http://localhost:3030';
 
 	/**
 	 * Vite development server URL (if available).
 	 *
 	 * @var string|null
 	 */
-	private $dev_server = 'http://localhost:3030';
+	private $dev_server_url;
 
 	/**
 	 * Vite constructor.
@@ -51,16 +51,17 @@ class Vite {
 	 */
 	public function init() {
 		// Set the path to the manifest.json file.
-		$this->manifest_path  = esc_url( AM_API_PLUGIN_PATH . '/assets/dist/.vite/manifest.json' );
-		$this->dev_server_url = esc_url( $this->dev_server . '/assets/index.php' ); // Adjust the URL according to your Vite dev server configuration.
-		// Add actions to enqueue assets.
-		// add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_assets' ) ); // .
-		add_action( 'wp_loaded', array( $this, 'amapi_plugin_notice' ) );
+		$this->manifest_path  = AM_API_PLUGIN_PATH . '/assets/dist/.vite/manifest.json';
+		$this->dev_server_url = esc_url( $this->dev_server . '/assets/index.php' );
 
+		// Add loading notice if manifest file is missing.
+		add_action( 'wp_loaded', array( $this, 'amapi_plugin_notice' ) );
 	}
 
 	/**
-	 * Check if manifest file exists and show notice to build assets.
+	 * Show admin notice if manifest file is missing.
+	 *
+	 * @return void
 	 */
 	public function amapi_plugin_notice() {
 		if ( ! file_exists( $this->manifest_path ) && ! $this->is_dev_server_running() ) {
@@ -70,6 +71,8 @@ class Vite {
 
 	/**
 	 * Show notice to build assets.
+	 *
+	 * @return void
 	 */
 	public function show_build_assets_notice() {
 		?>
@@ -85,6 +88,8 @@ class Vite {
 
 	/**
 	 * Enqueue assets.
+	 *
+	 * @return void
 	 */
 	public function enqueue_assets() {
 
@@ -119,6 +124,8 @@ class Vite {
 
 	/**
 	 * Enqueue development assets from Vite dev server.
+	 *
+	 * @return void
 	 */
 	private function enqueue_dev_assets() {
 		if ( $this->is_dev_server_running() ) {
@@ -138,6 +145,10 @@ class Vite {
 	 * @return string|void
 	 */
 	public function add_module_type_to_script( $tag, $handle, $src ) {
+		if ( empty( $src ) ) {
+			return $tag;
+		}
+
 		if ( in_array( $handle, array( 'amapi-admin-script' ), true ) ) {
 			$tag = str_replace( '<script', '<script type="module"', $tag );
 		}
@@ -166,7 +177,8 @@ class Vite {
 	private function get_manifest_data() {
 		// Read the manifest.json file.
 		if ( file_exists( $this->manifest_path ) ) {
-			$manifest_data = file_get_contents( $this->manifest_path ); // phpcs:ignore
+			// phpcs:ignore WordPress.WP.AlternativeFunctions -- This is necessary for Vite manifest.
+			$manifest_data = file_get_contents( $this->manifest_path );
 
 			// Decode JSON data.
 			$manifest_data = json_decode( $manifest_data, true );

@@ -13,7 +13,8 @@ namespace HasanMiusage;
  * @package wordpress-plugin
  */
 class AM_API_Block {
-	use Traits\Singleton, Traits\PluginData; // Use the Singleton and PluginData trait.
+	use Traits\Singleton;
+	use Traits\PluginData; // Use the Singleton and PluginData trait.
 
 	/**
 	 * AM API Block constructor.
@@ -69,5 +70,4 @@ class AM_API_Block {
 		<?php
 		return ob_get_clean();
 	}
-
 }
