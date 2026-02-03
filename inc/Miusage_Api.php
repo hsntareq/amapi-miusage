@@ -1,5 +1,4 @@
 <?php
-// phpcs:ignore WordPress.Files.FileName.InvalidClassFileName WordPress.Files.FileName.NotHyphenatedLowercase
 /**
  * Miusage API class file.
  *
@@ -155,7 +154,7 @@ class Miusage_Api {
 			$row['date'] = gmdate( 'Y-m-d h:i:s', $row['date'] ); // Update the date format.
 		}
 
-		set_transient( $this->transient_timeout, __return_true(), HOUR_IN_SECONDS ); // Set the transient.
+		set_transient( $this->transient_timeout, true, HOUR_IN_SECONDS ); // Set the transient.
 
 		update_option( $this->amapi_option_key, $response ); // Update the option.
 		update_option( $this->amapi_option_date_key, gmdate( 'Y-m-d h:i:s', time() ) ); // Update the option.

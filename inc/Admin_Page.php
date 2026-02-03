@@ -41,7 +41,7 @@ class Admin_Page {
 	 */
 	public function init() {
 		// Add admin assets if the current page is the plugin admin page.
-		if ( isset( $_GET['page'] ) && 'hasan-miusage' === $_GET['page'] ) { // phpcs:ignore
+		if ( isset( $_GET['page'] ) && 'hasan-miusage' === sanitize_key( $_GET['page'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_vite_assets' ) );
 		}
 	}
