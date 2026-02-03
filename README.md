@@ -48,14 +48,14 @@ This command fetches the latest challenge data from the Miusage API and updates 
 
 ## Configuration
 
-The plugin provides a settings page where you can configure various options:
+The plugin works with minimal configuration:
 
-- **Sync Interval**: Set the automatic synchronization frequency (default: hourly)
-- **Display Options**: Configure which challenge data fields to display
-- **Related Posts**: Set the number of related posts to display and order
-- **API Settings**: Configure Miusage API endpoint and authentication if needed
+- **Manual Refresh**: Use the admin page to manually refresh challenge data from the API (AJAX)
+- **WP-CLI Command**: Use `wp amapi refresh` from command line to fetch latest data
+- **Hourly Cooldown**: After each refresh, the plugin enforces a 1-hour cooldown before the next refresh can be triggered via AJAX (wp-cli bypass this limit)
+- **Auto Display**: The Gutenberg block automatically displays the latest fetched challenge data
 
-Access configuration at **WordPress Admin > Hasan Miusage > Settings**
+Access the plugin dashboard at **WordPress Admin > Hasan Miusage**
 
 ## Features in Detail
 
