@@ -1,6 +1,14 @@
 # Hasan Miusage
 
-This "Hasan Miusage" plugin will allows you to run a CRUD operation inside the plugin page of admin panel of a WordPress website.
+This "Hasan Miusage" plugin allows you to seamlessly integrate challenge data from the Miusage API (<https://miusage.com/>) into your WordPress website. The plugin automatically retrieves challenge information on an hourly basis and updates your WordPress site with the latest data using WordPress hooks and wp-cli integration for efficient data synchronization. It provides a comprehensive CRUD interface within the WordPress admin panel, allowing you to manage and view challenge-related content directly from the admin dashboard.
+
+## Key Features
+
+- **Automated Data Retrieval**: Automatically fetches challenge data from <https://miusage.com/v1/challenge/1/> every hour
+- **WP-CLI Integration**: Support for wp-cli commands to trigger manual data updates and synchronization
+- **Admin Dashboard**: Full CRUD operations accessible through a dedicated admin page under "Hasan Miusage"
+- **Data Management**: Easy-to-use interface for viewing, creating, updating, and deleting challenge records
+- **Flexible Configuration**: Customizable settings to fine-tune the plugin behavior and data handling
 
 ## Installation
 
